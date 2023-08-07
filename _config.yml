@@ -1,2 +1,3 @@
 # theme: jekyll-theme-cayman
-theme: jekyll-theme-chirpy
+# theme: jekyll-theme-chirpy # failed
+remote_theme: cotes2020/jekyll-theme-chirpy
