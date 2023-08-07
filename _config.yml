@@ -1,3 +1,11 @@
 # theme: jekyll-theme-cayman
 # theme: jekyll-theme-chirpy # failed
 remote_theme: cotes2020/jekyll-theme-chirpy
+
+plugins:
+- jekyll-remote-theme
+- jekyll-paginate
+- jekyll-redirect-from
+- jekyll-seo-tag
+- jekyll-archives
+- jekyll-sitemap
