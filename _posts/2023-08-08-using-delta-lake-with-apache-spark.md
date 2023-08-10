@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Using Delta Lake with Apache Spark
+categories:
+    - spark
+    - delta
 ---
 - [Overview](#overview)
-- [How it works](#how-it-works)
+- [Getting Started](#getting-started)
   - [Download a Spark Distribution](#download-a-spark-distribution)
   - [Create a Pyspark helper shell script](#create-a-pyspark-helper-shell-script)
   - [Start Pyspark (with jupyterlab)](#start-pyspark-with-jupyterlab)
@@ -15,11 +18,12 @@ title: Using Delta Lake with Apache Spark
 ## Overview
 
 
-> [According to the Delta Lake Introduction Docs](https://docs.delta.io/latest/delta-intro.html) Delta Lake is an open source project that enables building a Lakehouse architecture on top of data lakes. Delta Lake provides ACID transactions, scalable metadata handling, and unifies streaming and batch data processing on top of existing data lakes, such as S3, ADLS, GCS, and HDFS.
+[According to the Delta Lake Introduction Docs](https://docs.delta.io/latest/delta-intro.html)
+> Delta Lake is an open source project that enables building a Lakehouse architecture on top of data lakes. Delta Lake provides ACID transactions, scalable metadata handling, and unifies streaming and batch data processing on top of existing data lakes, such as S3, ADLS, GCS, and HDFS.
 
-This blog will intend to break down a few of these core features, provide examples, and give a quick sense as to why open table formats such as Delta Lake have added benefits over purely columnar file formats like parquet in a data lake.
+This blog will intend to break down a few of these core features, provide examples, and give a quick sense as to why open table formats such as Delta Lake have added benefits over other data lake file formats such as parquet.
 
-## How it works
+## Getting Started
 
 The [Delta Lake Quick Start](https://docs.delta.io/latest/quick-start.html) provides some examples on how to set things up but for the following examples, let's try the following appoach:
 
