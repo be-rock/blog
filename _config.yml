@@ -1,5 +1,8 @@
-# theme: jekyll-theme-cayman
 theme: minima
+header_pages:
+  - about.md
+  - portfolio.md
+# theme: jekyll-theme-cayman
 # theme: jekyll-theme-chirpy # failed
 # remote_theme: cotes2020/jekyll-theme-chirpy # failed
 
