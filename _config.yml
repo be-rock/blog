@@ -1,4 +1,5 @@
-theme: jekyll-theme-cayman
+# theme: jekyll-theme-cayman
+theme: minima
 # theme: jekyll-theme-chirpy # failed
 # remote_theme: cotes2020/jekyll-theme-chirpy # failed
 
