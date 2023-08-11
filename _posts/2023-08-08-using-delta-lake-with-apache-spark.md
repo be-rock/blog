@@ -11,6 +11,8 @@ categories:
   - [Create a Pyspark helper shell script](#create-a-pyspark-helper-shell-script)
   - [Start Pyspark (with jupyterlab)](#start-pyspark-with-jupyterlab)
 - [Delta Lake Features](#delta-lake-features)
+  - [Delta Log](#delta-log)
+  - [Data Management](#data-management)
   - [Constraints](#constraints)
   - [Transactions](#transactions)
   - [Time Travel](#time-travel)
@@ -21,19 +23,19 @@ categories:
 [According to the Delta Lake Introduction Docs](https://docs.delta.io/latest/delta-intro.html)
 > Delta Lake is an open source project that enables building a Lakehouse architecture on top of data lakes. Delta Lake provides ACID transactions, scalable metadata handling, and unifies streaming and batch data processing on top of existing data lakes, such as S3, ADLS, GCS, and HDFS.
 
-This blog will intend to break down a few of these core features, provide examples, and give a quick sense as to why open table formats such as Delta Lake have added benefits over other data lake file formats such as parquet.
+This blog will try to break down a few of these core features, provide examples, and give a quick sense as to why open table formats such as Delta Lake have added benefits over other data lake file formats such as parquet.
 
 ## Getting Started
 
-The [Delta Lake Quick Start](https://docs.delta.io/latest/quick-start.html) provides some examples on how to set things up but for the following examples, let's try the following appoach:
+The [Delta Lake Quick Start](https://docs.delta.io/latest/quick-start.html) provides some examples on how to set things up but for the examples in this post, the environment was setup as follows:
 
-1. Download a distribution of Apache Spark site
+1. Download a Spark distribution from the Apache Spark site
 2. Create a little helper shell script to start Spark and download the required Delta libraries
 3. Use Delta with Apache Spark
 
 ### Download a Spark Distribution
 
-An Apache Spark tarball can be downloaded from https://spark.apache.org/downloads.html and extracted into a directory of your choosing. The directory that the tarball is extracted to becomes your `SPARK_HOME`. If the tarball was extracted in `/var/lib/` the `SPARK_HOME` should be set like so:
+An Apache Spark tarball can be downloaded from https://spark.apache.org/downloads.html and extracted into a directory of your choosing. The directory that the tarball is extracted to becomes your `SPARK_HOME`. If the tarball was extracted in `/var/lib/` then `SPARK_HOME` should be set like so:
 
 ```shell
 export SPARK_HOME=/var/lib/spark-3.4.1-bin-hadoop3/
@@ -54,6 +56,7 @@ Let's install jupyter into a virtual environment and then download the Delta lib
 ```shell
 # install jupyter into a virtual environment
 python -m venv .venv
+.venv/bin/pip install jupyterlab
 ```
 
 ```shell
@@ -88,93 +91,120 @@ $SPARK_HOME/bin/pyspark \
 
 ## Delta Lake Features
 
-Set up a table for our tests:
+Set up a simple table for our tests:
 
 ```python
-database = 'default'
+database = 'mydb'
 table    = 't1'
 db_table = f'{database}.{table}'
 
+spark.sql(f"create database if not exists {database}")
+
 df = spark.range(1, 3)
-df.write.format("delta").mode("overwrite").saveAsTable(db_table)
-6
-spark.read.table(db_table).show()
+df.show()
 +---+
 | id|
 +---+
 |  2|
 |  1|
 +---+
+
+df.write.format("delta").mode("overwrite").saveAsTable(db_table)
 ```
 
-There are numerous ways to interact with Delta tables but two of the most common are through Spark or through an SDK like python. For example:
+```shell
+# show the file structure hierarchy
+!tree ./spark-warehouse/mydb.db/t1/
+./spark-warehouse/mydb.db/t1/
+├── _delta_log
+│   └── 00000000000000000000.json
+├── part-00000-6161790c-16a3-432c-b837-b61c28443ff9-c000.snappy.parquet
+├── part-00007-4ec220ce-163f-4fe7-a6e2-2d6bfb21974a-c000.snappy.parquet
+└── part-00015-7ab78345-c9ea-40d9-b137-d067646832cf-c000.snappy.parquet
 
-```python
-from delta.tables import DeltaTable
-
-deltaTable = DeltaTable.forName(sparkSession=spark, tableOrViewName=f"{database}.{table}")
+1 directory, 4 files
 ```
 
-What can you do with a delta_table you might be wondering? Inspecting the methods and attrbutes of the `delta_table` instance gives a good high-level indication:
+### Delta Log
 
-```python
-# show all supported DeltaTable methods
-def show_attributes(obj) -> None:
-    _ = [print(k, end=' ') for k in dir(obj) if not k.startswith("_")]
+The Delta Log is the transactional component of a delta table and is represented in the above filesystem hierarchy snippet represented in directory `_delta_log`.
 
-show_attributes(deltaTable)
+The delta log contains the table schema and schema change information, references to the files that comprise the table, and other various metadata and metrics.
 
-alias
-convertToDelta
-create
-createIfNotExists
-createOrReplace
-delete
-detail
-forName
-forPath
-generate
-history
-isDeltaTable
-merge
-optimize
-replace
-restoreToTimestamp
-restoreToVersion
-toDF
-update
-upgradeTableProtocol
-vacuum
+A single json file is written per transaction. To continue with the example started above:
+
+```shell
+spark.sql(f"insert into {db_tablej} values (3)")
+./spark-warehouse/mydb.db/t1/
+├── _delta_log
+│   ├── 00000000000000000000.json
+│   └── 00000000000000000001.json
+├── part-00000-27f9f793-77ef-4b20-9f2b-ef82c2b632cf-c000.snappy.parquet
+├── part-00000-6161790c-16a3-432c-b837-b61c28443ff9-c000.snappy.parquet
+├── part-00007-4ec220ce-163f-4fe7-a6e2-2d6bfb21974a-c000.snappy.parquet
+└── part-00015-7ab78345-c9ea-40d9-b137-d067646832cf-c000.snappy.parquet
+1 directory, 6 files
 ```
 
-This list includes 21 items at time of writing, let's try to knock out each of these over the course of this post. We'll get a few of the more straight-forward items first:
-
-- [x] detail
-- [x] history
-- [x] isDeltaTable
+This single inserted record resulted in a new transaction log as well as a new data file. After, by default, every 10 transactions a checkpoint will be created in the delta log. This checkpoint file is in parquet format and serves to reduce the amount of json file reads that are required on tables with heavy transactions (and thus many json transaction logs).
 
 ```python
-# 1. `detail`` - return a dataframe showing details of the table
-deltaTable.detail().show()
-+------+------------------------------------+------------------------+-----------+-------------------------------------------------------------+-----------------------+-----------------------+----------------+--------+-----------+----------+----------------+----------------+------------------------+
-|format|id                                  |name                    |description|location                                                     |createdAt              |lastModified           |partitionColumns|numFiles|sizeInBytes|properties|minReaderVersion|minWriterVersion|tableFeatures           |
-+------+------------------------------------+------------------------+-----------+-------------------------------------------------------------+-----------------------+-----------------------+----------------+--------+-----------+----------+----------------+----------------+------------------------+
-|delta |03c391f2-2418-4035-ac95-7a6fe6d9ba4 |spark_catalog.default.t3|null       |file:/home/myuser/code/git/notebooks/spark/spark-warehouse/t3|2023-08-08 13:12:26.361|2023-08-08 13:12:33.237|[]              |3       |1434       |{}        |1               |2               |[appendOnly, invariants]|
-+------+------------------------------------+------------------------+-----------+-------------------------------------------------------------+-----------------------+-----------------------+----------------+--------+-----------+----------+----------------+----------------+------------------------+
+for i in range(0, 10):
+    spark.sql(f"insert into {db_table} values ({i})")
+```
 
-# 2. `isDeltaTable` - returns a true/false bool
-deltaTable.isDeltaTable(sparkSession=spark,
-                        identifier=deltaTable.detail().select("location").collect()[0]['location'])
-True
+```shell
+!tree ./spark-warehouse/mydb.db/t1/
+./spark-warehouse/mydb.db/t1/
+├── _delta_log
+│   ├── 00000000000000000000.json
+...
+│   ├── 00000000000000000010.checkpoint.parquet
+│   ├── 00000000000000000010.json
+...
+1 directory, 28 files
+```
 
-# 3. `history` - show a dataframe showing point-in-time history of a table
-deltaTable.history().show(truncate=False)
-+-------+-----------------------+------+--------+---------------------------------+-----------------------------------------------------------------------------+----+--------+---------+-----------+--------------+-------------+-----------------------------------------------------------+------------+-----------------------------------+
-|version|timestamp              |userId|userName|operation                        |operationParameters                                                          |job |notebook|clusterId|readVersion|isolationLevel|isBlindAppend|operationMetrics                                           |userMetadata|engineInfo                         |
-+-------+-----------------------+------+--------+---------------------------------+-----------------------------------------------------------------------------+----+--------+---------+-----------+--------------+-------------+-----------------------------------------------------------+------------+-----------------------------------+
-|1      |2023-08-08 13:12:33.237|null  |null    |WRITE                            |{mode -> Append, partitionBy -> []}                                          |null|null    |null     |0          |Serializable  |true         |{numFiles -> 1, numOutputRows -> 1, numOutputBytes -> 478} |null        |Apache-Spark/3.4.1 Delta-Lake/2.4.0|
-|0      |2023-08-08 13:12:26.621|null  |null    |CREATE OR REPLACE TABLE AS SELECT|{isManaged -> true, description -> null, partitionBy -> [], properties -> {}}|null|null    |null     |null       |Serializable  |false        |{numFiles -> 3, numOutputRows -> 2, numOutputBytes -> 1252}|null        |Apache-Spark/3.4.1 Delta-Lake/2.4.0|
-+-------+-----------------------+------+--------+---------------------------------+-----------------------------------------------------------------------------+----+--------+---------+-----------+--------------+-------------+-----------------------------------------------------------+------------+-----------------------------------+
+Let's observe what happens when we delete a single record from the table.
+
+```python
+spark.sql(f"DELETE FROM {db_table} WHERE id = 7")
+```
+
+```shell
+!tree ./spark-warehouse/mydb.db/t1/
+./spark-warehouse/mydb.db/t1/
+├── _delta_log
+│   ├── 00000000000000000000.json
+...
+1 directory, 30 files
+```
+
+So the `DELETE` operation added 2 new files, one of which is the new transaction log json file, as expected but the other file is, strangely, a new parquet data file.
+
+### Data Management
+
+As shown in the above example, the amount of transaction and data files can grow quickly.
+
+```python
+spark.read.table(f"{db_table}").count()
+12
+```
+
+The table has only 12 single-column records but has resulted in 30 files in the `_delta_log` and 16 parquet files.
+
+```shell
+!find ./spark-warehouse/mydb.db/t1/_delta_log/ -type f | wc -l
+30
+
+!find ./spark-warehouse/mydb.db/t1/ -name "*parquet" -type f | wc -l
+16
+```
+
+One way to compact this is to use the `VACUUM` command.
+
+```python
+spark.sql(f"VACUUM {db_table}")
 ```
 
 ### Constraints
@@ -245,6 +275,3 @@ spark.read.option("versionAsOf", 1).table(f'{database}.{table}').show()
 |  1|
 +---+
 ```
-
-- *TODO* CCPA / GDPR / State Privacy regulations
-

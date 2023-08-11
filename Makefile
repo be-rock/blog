@@ -17,7 +17,7 @@ install: ## Install pip requirements (prod)
 
 .PHONY: prose
 prose: ## Run the prose linter `proselint`
-	${VENV_DIR}/bin/proselint --config ./proselint-config.json docs/
+	${VENV_DIR}/bin/proselint --config ./proselint-config.json _posts/
 
 setup: ## Setup the environment
 setup: clean venv install
