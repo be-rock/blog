@@ -13,6 +13,8 @@ categories:
 - [Delta Lake Features](#delta-lake-features)
   - [Delta Log](#delta-log)
   - [Data Management](#data-management)
+    - [Vacuum](#vacuum)
+    - [Optimize](#optimize)
   - [Constraints](#constraints)
   - [Transactions](#transactions)
   - [Time Travel](#time-travel)
@@ -120,8 +122,6 @@ df.write.format("delta").mode("overwrite").saveAsTable(db_table)
 │   └── 00000000000000000000.json
 ├── part-00000-6161790c-16a3-432c-b837-b61c28443ff9-c000.snappy.parquet
 ├── part-00007-4ec220ce-163f-4fe7-a6e2-2d6bfb21974a-c000.snappy.parquet
-└── part-00015-7ab78345-c9ea-40d9-b137-d067646832cf-c000.snappy.parquet
-
 1 directory, 4 files
 ```
 
@@ -133,23 +133,26 @@ The delta log contains the table schema and schema change information, reference
 
 A single json file is written per transaction. To continue with the example started above:
 
-```shell
+```python
 spark.sql(f"insert into {db_tablej} values (3)")
+```
+
+```shell
 ./spark-warehouse/mydb.db/t1/
 ├── _delta_log
 │   ├── 00000000000000000000.json
 │   └── 00000000000000000001.json
 ├── part-00000-27f9f793-77ef-4b20-9f2b-ef82c2b632cf-c000.snappy.parquet
-├── part-00000-6161790c-16a3-432c-b837-b61c28443ff9-c000.snappy.parquet
-├── part-00007-4ec220ce-163f-4fe7-a6e2-2d6bfb21974a-c000.snappy.parquet
-└── part-00015-7ab78345-c9ea-40d9-b137-d067646832cf-c000.snappy.parquet
+...
 1 directory, 6 files
 ```
 
-This single inserted record resulted in a new transaction log as well as a new data file. After, by default, every 10 transactions a checkpoint will be created in the delta log. This checkpoint file is in parquet format and serves to reduce the amount of json file reads that are required on tables with heavy transactions (and thus many json transaction logs).
+This single inserted record resulted in a new transaction log file as well as a new data file.
+
+By default, after every 10 transactions a checkpoint file will be created in the delta log. This checkpoint file is in parquet format and serves to reduce the amount of json file reads that are required on tables with heavy transactions (and thus many json transaction logs). Let's see how that looks.
 
 ```python
-for i in range(0, 10):
+for i in range(0, 9):
     spark.sql(f"insert into {db_table} values ({i})")
 ```
 
@@ -161,8 +164,11 @@ for i in range(0, 10):
 ...
 │   ├── 00000000000000000010.checkpoint.parquet
 │   ├── 00000000000000000010.json
+│   └── _last_checkpoint
 ...
-1 directory, 28 files
+├── part-00000-27f9f793-77ef-4b20-9f2b-ef82c2b632cf-c000.snappy.parquet
+...
+1 directory, 26 files
 ```
 
 Let's observe what happens when we delete a single record from the table.
@@ -175,12 +181,13 @@ spark.sql(f"DELETE FROM {db_table} WHERE id = 7")
 !tree ./spark-warehouse/mydb.db/t1/
 ./spark-warehouse/mydb.db/t1/
 ├── _delta_log
-│   ├── 00000000000000000000.json
 ...
-1 directory, 30 files
+│   ├── 00000000000000000011.json
+...
+1 directory, 28 files
 ```
 
-So the `DELETE` operation added 2 new files, one of which is the new transaction log json file, as expected but the other file is, strangely, a new parquet data file.
+So the `DELETE` operation added 2 new files, one of which is the new transaction log json file as expected but the other file is a new parquet data file. So the `DELETE` actually created more data.
 
 ### Data Management
 
@@ -201,10 +208,61 @@ The table has only 12 single-column records but has resulted in 30 files in the 
 16
 ```
 
+#### Vacuum
+
 One way to compact this is to use the `VACUUM` command.
 
 ```python
-spark.sql(f"VACUUM {db_table}")
+retention_hours = 0.0001
+
+spark.sql(f"VACUUM {db_table} RETAIN {retention_hours} HOURS")
+```
+
+Running something like the above for a low number of retention hours will result in an exception being thrown. This is not something you will want to do in production but for testing and exploration, the validation check can be disabled via: `spark.conf.set("spark.databricks.delta.retentionDurationCheck.enabled", "false")`. Rerunning the `vacuum` command again after changing the validation check will result in output like this:
+
+```shell
+Deleted 3 files and directories in a total of 1 directories.
+```
+
+```shell
+!tree ./spark-warehouse/mydb.db/t1/
+./spark-warehouse/mydb.db/t1/
+├── _delta_log
+...
+│   ├── 00000000000000000012.json
+│   ├── 00000000000000000013.json
+│   └── _last_checkpoint
+├── part-00000-15823adb-7611-4541-84d3-c021d8e5762a-c000.snappy.parquet
+...
+```
+This operation seems to have added 2 new transaction log files. Let's try to review the delta log using the `DESCRIBE HISTORY` command and see if we can determine why that is.
+
+```python
+spark.sql(f"describe history {db_table}").select("version", "operation", "operationParameters").show(truncate=False)
++-------+---------------------------------+----------------------------------------------------------------------------------------------------+
+|version|operation                        |operationParameters                                                                                 |
++-------+---------------------------------+----------------------------------------------------------------------------------------------------+
+|13     |VACUUM END                       |{status -> COMPLETED}                                                                               |
+|12     |VACUUM START                     |{retentionCheckEnabled -> false, defaultRetentionMillis -> 604800000, specifiedRetentionMillis -> 0}|
+|11     |DELETE                           |{predicate -> ["(id#61345L = 7)"]}                                                                  |
+|10     |WRITE                            |{mode -> Append, partitionBy -> []}                                                                 |
+...
+```
+
+So a transaction entry was created both at the start of the `vacuum` transaction as well as the completion. Note that log files are not cleaned up by the `vacuum` command but are automatically cleaned up by after checkpoints are written.
+
+#### Optimize
+
+More efficiently optimize the layout of the table
+
+```python
+spark.sql(f"OPTIMIZE {db_table} ZORDER BY (id)")
+spark.sql(f"describe history {db_table}").select("version", "operation", "operationParameters").show(truncate=False)
++-------+---------------------------------+----------------------------------------------------------------------------------------------------+
+|version|operation                        |operationParameters                                                                                 |
++-------+---------------------------------+----------------------------------------------------------------------------------------------------+
+|14     |OPTIMIZE                         |{predicate -> [], zOrderBy -> ["id"]}                                                               |
+...
 ```
 
 ### Constraints
@@ -249,29 +307,14 @@ deltaTable.vacuum(retentionHours=(24 * 14))
 
 ### Time Travel
 
+Read a table at a point-in-time.
+
 ```python
-spark.read.table(f"{database}.{table}").show()
-+---+
-| id|
-+---+
-|  3|
-|  2|
-|  1|
-+---+
+spark.read.table(db_table).count()
+11
 
-spark.read.option("versionAsOf", 0).table(f'{database}.{table}').show()
-+---+
-| id|
-+---+
-|  2|
-|  1|
-+---+
-
-spark.read.option("versionAsOf", 1).table(f'{database}.{table}').show()
-+---+
-| id|
-+---+
-|  2|
-|  1|
-+---+
+spark.read.option("versionAsOf", 0).table(db_table).count()
+2
 ```
+
+A similar approach can be taken with the `timestampAsOf` option. The format of the timestamp option is described in more detail in the time-travel docs.
