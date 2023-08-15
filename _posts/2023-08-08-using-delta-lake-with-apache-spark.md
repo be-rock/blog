@@ -16,20 +16,18 @@ categories:
     - [Vacuum](#vacuum)
     - [Optimize](#optimize)
   - [Constraints](#constraints)
-  - [Transactions](#transactions)
-  - [Time Travel](#time-travel)
 
 ## Overview
 
 
-[According to the Delta Lake Introduction Docs](https://docs.delta.io/latest/delta-intro.html)
+[According to the Delta Lake Introduction Docs](https://docs.delta.io/latest/delta-intro.html):
 > Delta Lake is an open source project that enables building a Lakehouse architecture on top of data lakes. Delta Lake provides ACID transactions, scalable metadata handling, and unifies streaming and batch data processing on top of existing data lakes, such as S3, ADLS, GCS, and HDFS.
 
 This blog will try to break down a few of these core features, provide examples, and give a quick sense as to why open table formats such as Delta Lake have added benefits over other data lake file formats such as parquet.
 
 ## Getting Started
 
-The [Delta Lake Quick Start](https://docs.delta.io/latest/quick-start.html) provides some examples on how to set things up but for the examples in this post, the environment was setup as follows:
+The [Delta Lake Quick Start](https://docs.delta.io/latest/quick-start.html) provides some examples on how to set things up. You could use a cloud provider with a hosted Spark runtime but for the examples in this post, we'll have more fun by settings up the environment locally as follows:
 
 1. Download a Spark distribution from the Apache Spark site
 2. Create a little helper shell script to start Spark and download the required Delta libraries
@@ -88,7 +86,7 @@ $SPARK_HOME/bin/pyspark \
 ### Start Pyspark (with jupyterlab)
 
 ```shell
-./start_pyspark.sh
+./start_pyspark.sh /var/lib/spark-3.4.1-bin-hadoop3
 ```
 
 ## Delta Lake Features
@@ -127,7 +125,7 @@ df.write.format("delta").mode("overwrite").saveAsTable(db_table)
 
 ### Delta Log
 
-The Delta Log is the transactional component of a delta table and is represented in the above filesystem hierarchy snippet represented in directory `_delta_log`.
+The Delta Log is the transactional component of a delta table and is represented in the above filesystem hierarchy snippet in directory `_delta_log`.
 
 The delta log contains the table schema and schema change information, references to the files that comprise the table, and other various metadata and metrics.
 
@@ -267,43 +265,16 @@ spark.sql(f"describe history {db_table}").select("version", "operation", "operat
 
 ### Constraints
 
-Delta supports check constraints like traditional database constraints and are enforced upon write. Constraints could include null constraints, value constraints, *TODO*.
-
-The list of supported constraints can be found in the official docs here: []()
+Delta supports but `NOT NULL` and `CHECK` constraints and are enforced upon write.
 
 ```python
 # add the constraint
 spark.sql(f"ALTER TABLE {db_table} ADD CONSTRAINT idMinimumValue CHECK (id > 0)")
-spark.sql(f"insert into {db_table} values (-1)")
+spark.sql(f"INSERT INTO {db_table} VALUES (-1)")
 Py4JJavaError
 ...
 org.apache.spark.sql.delta.schema.DeltaInvariantViolationException: CHECK constraint c1minimumvalue (c1 > 0) violated by row with values:
 ...
-spark.sql(f"insert into {db_table} values (3)")
-spark.read.table(db_table).show()
-+---+
-| id|
-+---+
-|  2|
-|  3|
-|  1|
-+---+
-```
-
-### Transactions
-
-Delta supports both updates and deletes. Tables with heavy transactions can have result in stale data that can be cleaned up using `optimize` *TODO* and `vaccuum`.
-
-```python
-# this will clean up deleted data that is not needed beyond the provide retentionHours retention threshold
-deltaTable.vacuum(retentionHours=(24 * 14))
-```
-
-*TODO* - was not able to get this to work when testing locally with a minimal `retentionHours` value due to this safe-guard:
-
-> If you are certain that there are no operations being performed on this table, such as
-> insert/upsert/delete/optimize, then you may turn off this check by setting:
-> spark.databricks.delta.retentionDurationCheck.enabled = false
 
 ### Time Travel
 
@@ -317,4 +288,4 @@ spark.read.option("versionAsOf", 0).table(db_table).count()
 2
 ```
 
-A similar approach can be taken with the `timestampAsOf` option. The format of the timestamp option is described in more detail in the time-travel docs.
+A similar approach can be taken with the `timestampAsOf` option. The format of the timestamp option is described in more detail in the [delta batch time-travel docs](https://docs.delta.io/latest/delta-batch.html#query-an-older-snapshot-of-a-table-time-travel).
