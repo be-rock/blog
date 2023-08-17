@@ -16,6 +16,7 @@ categories:
     - [Vacuum](#vacuum)
     - [Optimize](#optimize)
   - [Constraints](#constraints)
+  - [Time Travel](#time-travel)
 
 ## Overview
 
@@ -275,6 +276,7 @@ Py4JJavaError
 ...
 org.apache.spark.sql.delta.schema.DeltaInvariantViolationException: CHECK constraint c1minimumvalue (c1 > 0) violated by row with values:
 ...
+```
 
 ### Time Travel
 
