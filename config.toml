@@ -1,0 +1,58 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "PaperMod"
+
+[params.profileMode]
+enabled = true
+title = "Your Name"
+subtitle = "Your tagline or description"
+# imageUrl = "images/profile.jpg"
+imageTitle = "Profile image"
+imageWidth = 120
+imageHeight = 120
+
+[[params.profileMode.buttons]]
+name = "Blog"
+url = "/posts/"
+
+[[params.profileMode.buttons]]
+name = "Projects"
+url = "/projects/"
+
+[[params.socialIcons]]
+name = "Github"
+url = "https://github.com/yourusername"
+
+[[params.socialIcons]]
+name = "Twitter"
+url = "https://twitter.com/yourusername"
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 4
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
