@@ -1,5 +1,4 @@
-baseURL = https://be-rock.github.io/blog/"
-"
+baseURL = "https://be-rock.github.io/blog/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "PaperMod"
