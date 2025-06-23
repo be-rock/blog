@@ -1,12 +1,16 @@
 baseURL = "https://be-rock.github.io/blog/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Brock's Blog"
 theme = "PaperMod"
+# ShowCodeCopyButtons = true
+
+[params.showCodeCopyButtons]
+enabled = true
 
 [params.profileMode]
 enabled = true
-title = "Your Name"
-subtitle = "Your tagline or description"
+title = "Brock's Blog"
+subtitle = "A tech enthusiast learning through writing"
 # imageUrl = "images/profile.jpg"
 imageTitle = "Profile image"
 imageWidth = 120
@@ -14,19 +18,19 @@ imageHeight = 120
 
 [[params.profileMode.buttons]]
 name = "Blog"
-url = "/posts/"
+url = "posts/"
 
-[[params.profileMode.buttons]]
-name = "Projects"
-url = "/projects/"
+# [[params.profileMode.buttons]]
+# name = "Projects"
+# url = "/posts/"
 
 [[params.socialIcons]]
 name = "Github"
-url = "https://github.com/yourusername"
+url = "https://github.com/be-rock"
 
-[[params.socialIcons]]
-name = "Twitter"
-url = "https://twitter.com/yourusername"
+# [[params.socialIcons]]
+# name = "Linkedin"
+# url = "https://www.linkedin.com/in/yourusername/"
 
 [menu]
 

@@ -1,19 +1,22 @@
+.DEFAULT_GOAL := help
+
 help: ## Show this help message.
 	@echo -e 'Usage: make [target] ...\n'
 	@echo 'targets:'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
-.PHONY: build
-build: ## build the site
-	@echo "Building the site..."
-	hugo
-
 .PHONY: clean
-clean: ## clean the build artifacts
-	@echo "Cleaning up build artifacts..."
-	rm -rf public/
+clean: ## clean up the public/ directory
+	@echo "Cleaning up the public directory"
+	rm -rf ./public
+
+.PHONY: new-post
+new-post: ## make a new post named "post-title" such as `make new-post "post-title"`
+	@echo "Creating a new post with title: $*"
+	hugo new posts/$*.md
 
 .PHONY: serve
 serve: ## serve the site locally, including content marked as draft
-	@echo "Starting local server at http://localhost:1313"
+	@echo "Starting local server"
 	hugo server --buildDrafts
+
