@@ -1,11 +1,12 @@
 baseURL = "https://be-rock.github.io/blog/"
 languageCode = "en-us"
-title = "Brock's Blog"
+title = "Brock B's Blog"
 theme = "PaperMod"
-# ShowCodeCopyButtons = true
 
-[params.showCodeCopyButtons]
-enabled = true
+[params]
+showCodeCopyButtons = true
+showReadingTime = true
+showWordCount = true
 
 [params.profileMode]
 enabled = true
@@ -60,3 +61,9 @@ url = "https://github.com/be-rock"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 5
+    ordered = false
