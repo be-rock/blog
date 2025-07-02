@@ -19,9 +19,9 @@ Starting with [Apache Spark 4.0](https://spark.apache.org/docs/latest/api/python
 
 So what *are* PySpark Custom Data Sources?
 
-Custom data sources allow you to define a source `format` other than the default built-in formats such as csv, json, and parquet. There are many other supported formats such as Delta and Iceberg, but if there is no community or commercial support offered for the data source of interest, you can easily extend and inherit some builtin PySpark classes and roll your own.
+Custom data sources allow you to define a source `format` other than the default built-in formats such as csv, json, and parquet. There are many other supported formats such as Delta and Iceberg, but if there is no community or commercial support offered for the data source of interest, you can extend and inherit some builtin PySpark classes and roll your own. One common example of this may be calling a REST endpoint.
 
-[DuckDB](https://duckdb.org/) and [DuckLake](https://ducklake.select/) are discussed a lot lately so I thought it would be fun to see how easy it would be to interact with it from Spark. DuckDB does have an [experimental Spark API](https://duckdb.org/docs/stable/clients/python/spark_api) but that would just be too easy, so let's try to roll our own for educational purposes.
+[DuckDB](https://duckdb.org/) and [DuckLake](https://ducklake.select/) are being discussed a lot lately so I thought it would be fun to see how easy it would be to interact with it from Spark. DuckDB does have an [experimental Spark API](https://duckdb.org/docs/stable/clients/python/spark_api) but that would just be too easy, so let's try to roll our own for educational purposes.
 
 ### How does it work?
 
@@ -40,8 +40,15 @@ There is also a `DataSourceStreamReader` and `DataSourceStreamWriter` but we won
 
 Setup instructions follow but can also be setup using targets in a sample `Makefile` shown below in [References/Makefile](#makefile)
 - [Install the DuckDB CLI](https://duckdb.org/docs/installation)
-    - *Note* - This is a platform-dependent step so I'll omit this setup instruction here. This is not entirely required but is useful for setting up a quick test database and table.
-- Create a quick test table in DuckDb. Can also be run with `make duckdb-setup
+    - *Note* - This is a platform-dependent step so I'll omit this setup instruction here and refer you to the docs instead.
+
+- Setup the Python environment. Also can be run with `make python-setup`
+```shell
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install duckdb ipython pyspark==4.0.0
+```
+- Create a quick test table in DuckDb. Can also be run with `make duckdb-setup`
 
 ```shell
 duckdb dev.duckdb
@@ -49,17 +56,11 @@ create table t1 (c1 int);
 insert into t1 values (1);
 ```
 
-- Setup the Python environment. Also can be run with `make setup`
-```shell
-uv venv --python 3.12
-source .venv/bin/activate
-uv pip install duckdb ipython pyspark==4.0.0
-```
-
-- Start PySpark are make target `make start-pyspark`
+- Start PySpark use the make target: `make start-pyspark`
 
 ```shell
-PYSPARK_DRIVER_PYTHON=ipython pyspark
+source .venv/bin/activate && \
+      PYSPARK_DRIVER_PYTHON_OPTS="--TerminalInteractiveShell.editing_mode=vi --colors=Linux" PYSPARK_DRIVER_PYTHON=ipython pyspark
 ```
 
 ### Define a Data Source
@@ -118,6 +119,11 @@ spark.dataSource.register(DuckDBDataSource)
     .schema("c1 int")
     .load()
 ).show()
++---+
+| c1|
++---+
+|  1|
++---+
 ```
 
 ## Takeaway
@@ -132,6 +138,7 @@ This blog just scratches the surface of what's possible with Pyspark Custom Data
 
 ```Makefile
 # Makefile
+# Makefile
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
@@ -141,16 +148,21 @@ help: ## Show this help message
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
 .PHONY: setup-python
-setup: ## setup python env and dependencies
-	uv venv --python 3.12
-	source .venv/bin/activate
-	uv pip install duckdb ipython pyspark==4.0.0
+setup-python: ## setup python env and dependencies
+	uv venv --python 3.12 .venv
+	source .venv/bin/activate && uv pip install duckdb ipython pyarrow pyspark==4.0.0
 
 .PHONY: setup-duckdb
 setup-duckdb: ## setup duckdb database and test table with data
 	duckdb dev.duckdb -c "create table t1 (c1 int); insert into t1 values (1);"
 
+.PHONY: setup
+setup: ## setup python and duckdb
+	setup-python setup-duckdb
+
+
 .PHONY: start-pyspark
 start-pyspark: ## start-pyspark
-	PYSPARK_DRIVER_PYTHON=ipython pyspark
+	source .venv/bin/activate && \
+      PYSPARK_DRIVER_PYTHON_OPTS="--TerminalInteractiveShell.editing_mode=vi --colors=Linux" PYSPARK_DRIVER_PYTHON=ipython pyspark
 ```
