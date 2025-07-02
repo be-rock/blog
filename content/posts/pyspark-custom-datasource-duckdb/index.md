@@ -1,7 +1,7 @@
 ---
 title: "Building a Pyspark Custom Data Sources for DuckDB"
 date: 2025-06-14T23:51:42-05:00
-draft: true
+draft: false
 showToc: true
 tags:
     - duckdb
