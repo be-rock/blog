@@ -2,10 +2,11 @@
 title: "Building a Pyspark Custom Data Sources for DuckDB"
 date: 2025-06-14T23:51:42-05:00
 draft: true
+showToc: true
 tags:
+    - duckdb
     - pyspark
     - spark
-    - duckdb
 ---
 
 ## Summary
@@ -128,7 +129,7 @@ spark.dataSource.register(DuckDBDataSource)
 
 ## Takeaway
 
-This blog just scratches the surface of what's possible with Pyspark Custom Data Sources and would need numerous enhancements to be used in any serious manner but hopefully gets across the point of the Data Source's capabilities.
+This blog just scratches the surface of what's possible with Pyspark Custom Data Sources and would need numerous enhancements (obviously) to be used in any serious manner but hopefully gets across the point of the Data Source's capabilities.
 
 ## References
 
