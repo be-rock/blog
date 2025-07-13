@@ -139,7 +139,6 @@ This blog just scratches the surface of what's possible with Pyspark Custom Data
 
 ```Makefile
 # Makefile
-# Makefile
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
