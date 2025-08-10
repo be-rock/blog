@@ -5,7 +5,7 @@ draft: false
 showToc: true
 tags:
     - containers
-    - pyspark
+    - spark
     - testing
 ---
 
