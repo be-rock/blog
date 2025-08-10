@@ -5,7 +5,6 @@ draft: false
 showToc: true
 tags:
     - duckdb
-    - pyspark
     - spark
 ---
 
