@@ -20,9 +20,9 @@ tags:
 
 - I often work with streaming and Kafka with Apache Spark. Setting up and managing a Kafka cluster can be cumbersome so having a quick, easy, standardized, and leightweight way to run Kafka is appealing.
 - This blog attempts to test the claims of Buf - the company behind
-  - Bufstream - the "drop-in replacement for Kafka"
-  - BSR - the Buf Schema Registry which implements the "Confluent Schema Registry API"
-  - Buf CLI - a simple way to develop and manage Protobuf
+  - `Bufstream` - the "drop-in replacement for Kafka"
+  - `BSR` - the Buf Schema Registry which implements the "Confluent Schema Registry API"
+  - `buf` CLI - a simple way to develop and manage Protobuf
 
 ## Getting Started
 
@@ -30,6 +30,7 @@ tags:
     - https://buf.build/docs/bufstream/quickstart/
     - https://buf.build/docs/bsr/quickstart/
     - https://buf.build/docs/cli/quickstart/
+    - https://buf.build/docs/bufstream/iceberg/quickstart/
 
 ## Bufstream
 
@@ -38,11 +39,11 @@ tags:
 Starting with [this Bufstream quickstart guide](https://buf.build/docs/bufstream/quickstart/), we are advised to download the `bufstream` CLI with `curl` and then simply `./bufstream serve`. Let's see if that's as easy as it sounds.
 
 ```shell
-❯ curl -sSL -o bufstream \
+curl -sSL -o bufstream \
     "https://buf.build/dl/bufstream/latest/bufstream-$(uname -s)-$(uname -m)" && \
     chmod +x bufstream
 
-❯ ./bufstream serve
+./bufstream serve
 ...
 <snipped>
 ...
@@ -56,10 +57,10 @@ Ok, that really was quite easy.
 
 ### Setting up a web-based Kafka Administrative Console (optional)
 
-The quickstart then recommends installing either either [AKHQ](https://akhq.io/) or [Redpanda console] for managing Kafka-compatible workloads. The Redpanda installation is a simple 4-liner `docker run` so I'll give that one a try.
+The quickstart then recommends installing either either [AKHQ](https://akhq.io/) or [Redpanda console](https://docs.redpanda.com/current/console) for managing Kafka-compatible workloads. The Redpanda installation is a simple 4-liner `docker run` so I'll give that one a try.
 
 ```shell
-❯ docker run -p 8080:8080 \
+docker run -p 8080:8080 \
     -e KAFKA_BROKERS=host.docker.internal:9092 \
     -e KAFKA_CLIENTID="rpconsole;broker_count=1;host_override=host.docker.internal" \
     docker.redpanda.com/redpandadata/console:v3.1.3
@@ -74,7 +75,7 @@ The quickstart then recommends installing either either [AKHQ](https://akhq.io/)
 Hmmm, that did not work as expected. I am testing on Linux and believe that the quickstart presumes we're running MacOS. I have also seen subtle network differences in the past when working with Docker (ok, Podman) on Linux. This eventually worked:
 
 ```shell
-❯ docker run --network=host -p 8080:8080 \
+docker run --network=host -p 8080:8080 \
     -e KAFKA_BROKERS=localhost:9092 \
     docker.redpanda.com/redpandadata/console:v3.1.3
 ...
@@ -86,22 +87,151 @@ Hmmm, that did not work as expected. I am testing on Linux and believe that the 
 
 I was then able to view the Redpanda console in my browser at http://localhost:8080/overview.
 
-### Working with Protobuf and and the BSR
+### Working with Protobuf and the BSR
 
 Continuing with the quickstart, I cloned the Github repo and moved the previously installed `bufstream` CLI to the cloned directory.
 
 ```shell
-❯ git clone https://github.com/bufbuild/bufstream-demo.git && \
+git clone https://github.com/bufbuild/bufstream-demo.git && \
     mv bufstream ./bufstream-demo && \
     cd ./bufstream-demo
 ```
 
-This repo contains pre-created Protobuf files that have integration and support for Confluence-compatabile schema registries (which BSR complies with).
+This repo contains pre-created Protobuf files that have integration and support for Confluent-compatabile schema registries (which BSR complies with).
 
-## BSR (Buf Schema Registry)
+An example proto file is in `proto/bufstream/demo/v1/demo.proto` of the cloned repo and defines an `EmailUpdated` message.
 
-## Buf CLI
+Things get a little unclear here but from what I understand, this `demo.proto` file imports a reference to a confluent module with `import "buf/confluent/v1/extensions.proto";` and this is what enables the BSR to be compatible with Confluent schema registry. The mapping between the proto file and the topic is done with `    name: "email-updated-value"`. So the topic name here becomes `email-updated`.
+
+### Producing and Consuming data
+
+The quickstart references a `go run ./cmd/bufstream-demo-produce ...` and `go run ./cmd/bufstream-demo-consume ...` but I've noticed that the cloned repo comes with a `Makefile`. That would be simpler to use here but the produce/consume commands seem to be out of sync so we'll stick with what the demo suggests to be safe.
+
+```shell
+go run ./cmd/bufstream-demo-produce \
+  --topic email-updated \
+  --group email-verifier \
+  --csr-url "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+go run ./cmd/bufstream-demo-produce --topic email-updated --group email-verifier
+go: downloading github.com/brianvoe/gofakeit/v7 v7.3.0
+go: downloading github.com/google/uuid v1.6.0
+...
+<downloading lots of go libs here>
+...
+time=2025-08-06T22:41:20.299-05:00 level=INFO msg="produced semantically invalid protobuf message" id=072da6ca-8878-4c11-944b-5876a4fc4370
+time=2025-08-06T22:41:20.450-05:00 level=INFO msg="produced invalid data" id=32bc2119-f1bb-43f4-a9db-28fbb04ff7b5
+time=2025-08-06T22:41:21.588-05:00 level=INFO msg="produced semantically valid protobuf message" id=d6fc0bf3-e13b-421f-a696-212059d7961d
+...
+```
+
+So a lot of data is being generated, some of which is considered semantically invalid. Looking in the RedPanda console, I can see sample data such as `foobar` as well as other sample data such as `$f4525add-da7d-4b2b-aae9-884e7bab535dgarnettwunsch@dickens.netllama`, it's clear which of these 2 do not conform to the proto schema.
+
+Now I'll try the `make` target `make consume-run` and see what happens since this is consistent with the snippet in the blog (unlike the produce).
+
+```shell
+make consume-run
+go run ./cmd/bufstream-demo-consume --topic email-updated --group email-verifier \
+	--csr-url "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+make consume-run
+go run ./cmd/bufstream-demo-consume --topic email-updated --group email-verifier \
+	--csr-url "https://demo.buf.dev/integrations/confluent/bufstream-demo"
+time=2025-08-06T22:48:44.981-05:00 level=INFO msg="starting consume"
+time=2025-08-06T22:48:44.982-05:00 level=INFO msg="consumed message with new email sisterglover@labadie.biz and old email orvilledickinson@turcotte.biz"
+time=2025-08-06T22:48:45.984-05:00 level=INFO msg="consumed message with new email hound and old email antoniomurphy@bradtke.info"
+time=2025-08-06T22:48:45.984-05:00 level=INFO msg="consumed malformed data" error="registration is missing for encode/decode" length=7
+...
+```
+
+The log message `consumed malformed data` makes it sound like the consumer is consuming the data even if it is malformed and does not conform to the schema. This seems unexpected but I may have a misunderstanding on how this works.
+
+The quickstart then suggests to run:
+```shell
+./bufstream serve --config config/bufstream.yaml
+```
+
+...which now seems to tie it all together by ensuring that the consumer has a connection to the BSR and ensuring that the Consumer only sees records that comply with the registered schema. I verified that schema enforcment does seem to be happening here by reviewing the terminal output for the producer and consumer. The Producer shows invalid records (e.g. does not conform to the schema):
+
+```shell
+# sample invalid log message from the producer
+time=2025-08-09T22:36:50.224-05:00 level=ERROR msg="error on produce of invalid data" error="failed to produce: INVALID_RECORD: This record has failed the validation on the broker and hence been rejected."
+```
+
+...but the Consumer logs, *only* showed valid messages such as:
+
+```shell
+# sample valid log message from the consumer
+time=2025-08-09T22:36:45.222-05:00 level=INFO msg="consumed message with new email monkey and old email ernestlegros@parisian.name"
+```
+
+## Bufstream and Apache Spark
+
+If Bufstream really is a drop-in replacement for Apache Kafka, reading from Bufstream with Spark should also be straight-forward. Let's confirm this.
+
+
+```python
+from pyspark.sql import DataFrame
+from pyspark.sql import functions as sf
+from pyspark.sql.streaming.readwriter import DataStreamWriter
+from pyspark.sql.streaming.query import StreamingQuery
+
+KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
+TOPIC = "email-updated"
+
+df: DataFrame = (
+    spark
+    .readStream
+    .format("kafka")
+    .option("kafka.bootstrap.servers", KAFKA_BOOTSTRAP_SERVERS)
+    .option("subscribe", TOPIC)
+    .option("startingOffsets", "earliest")
+    .load()
+    .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+)
+
+datastream_writer: DataStreamWriter = (
+    df
+    .select("value")
+    .writeStream
+    .format("console")
+    .option("truncate", "false")
+)
+
+streaming_query: StreamingQuery = datastream_writer.start()
+
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++---------------------------------------------------------------------------------------------+
+|value                                                                                        |
++---------------------------------------------------------------------------------------------+
+|\n$926b3e7f-0311-4b0e-8925-e49b653e3f95jacqueskoss@lehner.info�alexisgraham@raynor.com    |
+|\n$c0ec4ae6-d7c0-49d0-96f3-f45e5df45e78jewelrohan@strosin.org�salmon                      |
+|foobar                                                                                      |
+|\n$a1d8b79c-87c5-4dde-9183-b702e5b5b334marshallreynolds@armstrong.io�ericklittle@lang.name|
+|\n$ab20b911-7bee-4fe9-8366-6211766412dfgissellejohnston@runolfsson.org�\vgrasshopper       |
+|foobar                                                                                      |
+|\n$f89d1a48-2d9b-4d77-a872-d39be4c61921rickybechtelar@stamm.net�raoulbeahan@rutherford.io |
+|\n$8af0f411-c2ed-494d-ac82-e495b111045austinanitzsche@lebsack.net�\bplatypus              |
+|foobar                                                                                      |
+|\n$a58f1996-c6b2-416b-8531-a603921dd828marisafunk@towne.net�blakerippin@kemmer.biz        |
+|\n$48fa5f74-5921-4061-ad25-559ce2cb6e7aeleonoreupton@rohan.net�wasp                       |
+|foobar
+...
+```
+
+So this appeared to work at a very basic level, but this is not how we should be performing reads via Spark given that we want our consumers to know and cross-reference the expected schema defined in the BSR. Given that we confirmed this worked as expected with the above Consumer, we will for now presume that this capability is possible with Spark as well and leave the full Spark --> BSR integration for later research.
+
+## What about Iceberg?
+
+
+
+## How does a Production migration?
+
+
 
 ## References
 
+
+
 ### Makefile
+
