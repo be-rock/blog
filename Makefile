@@ -17,6 +17,9 @@ list-posts: ## list all previously created posts
 
 .PHONY: new-post
 new-post: ## make a new post named "post-title" such as `make new-post title="post-title"`
+	@echo "switching to main branch and git pull ..."
+	git switch main
+	git pull
 	@echo "Creating a new git branch called $(title)"
 	git switch -c $(title)
 	@echo "Creating a new post page bundle with title: $(title) ..."
