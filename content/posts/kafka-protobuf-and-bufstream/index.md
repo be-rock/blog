@@ -1,14 +1,14 @@
 ---
-title: "Kafka and Protobuf with Bufstream"
-date: 2025-08-05T22:29:16-05:00
-draft: true
+title: "Streaming with Bufstream, Protobuf, and Spark"
+date: 2025-08-09T22:29:16-05:00
+draft: false
 showToc: true
 tags:
-    - streaming
-    - buf
+    - bufstream
     - kafka
     - protobuf
     - spark
+    - streaming
 ---
 
 ## Summary
@@ -19,14 +19,16 @@ tags:
 ## What is the point?
 
 - I often work with streaming and Kafka with Apache Spark. Setting up and managing a Kafka cluster can be cumbersome so having a quick, easy, standardized, and leightweight way to run Kafka is appealing.
-- This blog attempts to test the claims of Buf - the company behind
+- This blog attempts to test the claims of Buf - the company behind:
   - `Bufstream` - the "drop-in replacement for Kafka"
-  - `BSR` - the Buf Schema Registry which implements the "Confluent Schema Registry API"
+  - `BSR` - the Buf Schema Registry which implements the Confluent Schema Registry API
   - `buf` CLI - a simple way to develop and manage Protobuf
+
+Note that the `buf` CLI will be referenced in this blog, but less of a focus.
 
 ## Getting Started
 
-- On a surface-level, I have found the Buf docs to be nice and well written with 3 applicable quickstart guides that will be the basis for getting started
+- On a surface-level, I have found the Buf docs to be nice and well written with 4 applicable quickstart guides that will be the basis for getting started
     - https://buf.build/docs/bufstream/quickstart/
     - https://buf.build/docs/bsr/quickstart/
     - https://buf.build/docs/cli/quickstart/
@@ -149,7 +151,7 @@ The quickstart then suggests to run:
 ./bufstream serve --config config/bufstream.yaml
 ```
 
-...which now seems to tie it all together by ensuring that the consumer has a connection to the BSR and ensuring that the Consumer only sees records that comply with the registered schema. I verified that schema enforcment does seem to be happening here by reviewing the terminal output for the producer and consumer. The Producer shows invalid records (e.g. does not conform to the schema):
+...which now seems to tie it all together by ensuring that the consumer has a connection to the BSR and ensuring that the Consumer only sees records that comply with the registered schema. I verified that schema enforcement does seem to be happening here by reviewing the terminal output for the producer and consumer. The Producer shows invalid records (e.g. does not conform to the schema):
 
 ```shell
 # sample invalid log message from the producer
@@ -223,15 +225,28 @@ So this appeared to work at a very basic level, but this is not how we should be
 
 ## What about Iceberg?
 
+I followed the [Iceberg quickstart](https://buf.build/docs/bufstream/iceberg/quickstart) but it seems like the compose file is referencing a `spark/` directory that doesn't exist: `OSError: Dockerfile not found in /home/username/tmp/buf-examples/bufstream/iceberg-quickstart/spark` .So I couldn't get this working but according to the guide, all you need is:
+- Bufstream broker
+- object storage
+- an Iceberg catalog implementation
 
+The details of your Iceberg catalog are defined in `config/bufstream.yaml`.
 
-## How does a Production migration?
+## What about Bufstream in Production?
 
+The initial impression I had of Bustream is that deployments are super simple. I suppose this is true, in comparison to a Kafka deployment, but it still requires:
 
+- Object storage such as AWS S3, Google Cloud Storage, or Azure Blob Storage.
+- A metadata storage service such as PostgreSQL.
 
-## References
+There are numerous different deployment options such as Docker, Helm, and others with a provided Terraform module. It's unclear if BSR requires an additional set of deployments or if that is integrated into Postgres.
 
+## Recap
 
-
-### Makefile
-
+- Buf's vision seems well-thought and clearly-defined.
+    - A simplified Kafka-compatible streaming engine
+    - A single way to manage schemas with Protobuf
+    - Schema enforcement with the BSR
+    - Data Lakehouse integration with Apache Iceberg
+- The streaming market has no shortage of vended options but Buf's vision really makes it stand out.
+- Protobuf has the reputation for being less user-friendly than other serialization formats like JSON but this may change if the `buf` CLI can keep it's promises of simplifying the schema mangement experience.
