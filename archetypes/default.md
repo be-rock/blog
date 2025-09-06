@@ -4,7 +4,7 @@ date: {{ .Date }}
 draft: true
 showToc: true
 tags:
-    -
+  -
 ---
 
 ## Summary
