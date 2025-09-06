@@ -4,21 +4,23 @@ title = "Brock B's Blog"
 theme = "PaperMod"
 
 [params]
+# With `autoLastmod`, you can automatically capture the last modification date of each content file
+autoLastmod = true
 showCodeCopyButtons = true
 showReadingTime = true
 showWordCount = true
 
 [params.profileMode]
 enabled = true
-title = "Brock's Blog"
+title = "Brock B's Blog"
 subtitle = "A tech enthusiast learning through writing"
 # imageUrl = "images/profile.jpg"
-imageTitle = "Profile image"
-imageWidth = 120
-imageHeight = 120
+# imageTitle = "Profile image"
+# imageWidth = 120
+# imageHeight = 120
 
 [[params.profileMode.buttons]]
-name = "Blog"
+name = "Blog Posts"
 url = "posts/"
 
 # [[params.profileMode.buttons]]

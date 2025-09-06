@@ -28,4 +28,4 @@ new-post: ## make a new post named "post-title" such as `make new-post title="po
 .PHONY: serve
 serve: ## serve the site locally, including content marked as draft
 	@echo "Starting local server"
-	hugo server --buildDrafts
+	hugo server --watch --buildDrafts
