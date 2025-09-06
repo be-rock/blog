@@ -1,7 +1,7 @@
 ---
 title: "Evaluating V (Language)"
 date: 2025-08-25T19:39:16-05:00
-draft: true
+draft: false
 showToc: true
 tags:
   - v language
