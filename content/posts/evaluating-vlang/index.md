@@ -257,7 +257,7 @@ Once I get a chance, I would like to enhance this app in a few ways such as:
 - Provide flexiblity to the app user to give a dynamic number of inputs
 - Write the coin flip results to a SQL database https://modules.vlang.io/db.sqlite.ht
 
-This is just a toy app and each of the above components
+This is just a toy app and each of the above components can be expanded upon.
 
 ## Wrapping up
 
@@ -269,30 +269,4 @@ I felt that the language, thus far, has been intuitive. If a syntax or paradigm 
 
 ## Reference
 
-Following is a helper `Makefile` that was used in the
-
-```Makefile
-.DEFAULT_GOAL := help
-APP_NAME ?= coin_flipper
-
-help: ## Show this help message.
-	@echo 'Usage: make [target] ...'
-	@echo 'targets:'
-	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
-
-.PHONY: setup
-setup: ## setup a new lib project
-	v new --lib ${APP_NAME}
-
-.PHONY: run
-run: ## run the app
-	v run .
-
-.PHONY: crun
-crun: ## crun (compile and run) the app
-	v crun .
-
-.PHONY: test
-test: ## test the app
-	v -stats test tests/
-```
+The project code can be found in https://github.com/be-rock/coin-flipper-v
