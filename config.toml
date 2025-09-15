@@ -6,6 +6,7 @@ theme = "PaperMod"
 [params]
 # With `autoLastmod`, you can automatically capture the last modification date of each content file
 autoLastmod = true
+enableGitInfo = true
 showCodeCopyButtons = true
 showReadingTime = true
 showWordCount = true
