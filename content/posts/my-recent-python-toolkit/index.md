@@ -1,7 +1,7 @@
 ---
 title: "My Recent Python Toolkit"
 date: 2025-09-29T21:00:24-05:00
-draft: true
+draft: false
 showToc: true
 tags:
   - python
@@ -224,7 +224,7 @@ sudo mv prek /usr/local/bin/
 prek install
 ```
 
-### Python project and environment management - `uv`
+### Python project and environment management - `uv```
 
 `uv` makes managing dependencies easier and has other project-bootstrapping capabilities. Written in Rust, it's project dependency resolution, as an alternative to `pip install`. is significantly faster.
 
@@ -312,4 +312,4 @@ uvx ty check src/
 
 ## Takeaways
 
-While I'm not an expert in these tools, I've used them extensively (expert for new entries such as `ty`) and they've become my go-to choices for new Python projects.
+While I'm not an expert in these tools, I have used most extensively, with the exception of new entries such as `ty` and the supposed backwards-compatible version of `pre-commit`, `prek`
