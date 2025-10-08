@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/python/</link><description>Recent content in Python on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Mon, 29 Sep 2025 21:00:24 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>My Recent Python Toolkit</title><link>https://be-rock.github.io/blog/posts/my-recent-python-toolkit/</link><pubDate>Mon, 29 Sep 2025 21:00:24 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/my-recent-python-toolkit/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The Python development ecosystem has changed pretty dramatically over the recent years.&lt;/p&gt;
+&lt;p&gt;This post provides a practical introduction to the toolkit that I&amp;rsquo;ve been using, explaining why I chose each tool and how they work together.&lt;/p&gt;
+&lt;h2 id="the-toolkit"&gt;The Toolkit&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#command-runner---make"&gt;Command Runner&lt;/a&gt; - &lt;code&gt;make&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configuration---pydantic"&gt;Configuration&lt;/a&gt; - &lt;code&gt;pydantic&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#containerization---podman"&gt;Containerization&lt;/a&gt; - &lt;code&gt;podman&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#continuous-integration---github-actions"&gt;Continuous Integration&lt;/a&gt; - GitHub Actions&lt;/li&gt;
+&lt;li&gt;&lt;a href="#ide-cursor-or-vs-code"&gt;IDE&lt;/a&gt; - &lt;code&gt;cursor&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#linting--formatting---ruff"&gt;Linting &amp;amp; Formatting&lt;/a&gt; - &lt;code&gt;ruff&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#load-testing---locust"&gt;Load Testing&lt;/a&gt; - &lt;code&gt;locust&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#logging---logging"&gt;Logging&lt;/a&gt; - &lt;code&gt;logging&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#pre-commit---prek"&gt;Pre-commit&lt;/a&gt; - &lt;code&gt;prek&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#python-project-and-environment-management---uv"&gt;Python project and environment management&lt;/a&gt; - &lt;code&gt;uv&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#scheduling---cron"&gt;Scheduling&lt;/a&gt; - &lt;code&gt;cron&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#testing---pytest"&gt;Testing&lt;/a&gt; - &lt;code&gt;pytest&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#type-checking---ty"&gt;Type Checking&lt;/a&gt; - &lt;code&gt;ty&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="command-runner---make"&gt;Command Runner - &lt;code&gt;make&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;While not initially designed for this purpose, &lt;code&gt;make&lt;/code&gt; works very well as a command runner. A &lt;code&gt;Makefile&lt;/code&gt; can be created in your project root to represent common ways for your project to be used. It is also self-documenting and a helpful way for newcomers to get started with your project.&lt;/p&gt;</description></item></channel></rss>
