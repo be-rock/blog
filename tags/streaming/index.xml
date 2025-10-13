@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Streaming on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/streaming/</link><description>Recent content in Streaming on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sat, 09 Aug 2025 22:29:16 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/streaming/index.xml" rel="self" type="application/rss+xml"/><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Streaming on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/streaming/</link><description>Recent content in Streaming on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 20:21:51 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/streaming/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;This is a template / code snippet that can be useful to quickly setup a Spark Streaming Query with a source and sink. The template will not work in all circumstances, such as a &lt;code&gt;foreachBatch&lt;/code&gt; sink but is enough to get you started in a quick way, with some examples below on how this could be templatized even more using a markup language like &lt;code&gt;yaml&lt;/code&gt;, if so desired.&lt;/p&gt;
+&lt;h2 id="a-streaming-query-template"&gt;A Streaming Query template&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pyspark.sql &lt;span style="color:#f92672"&gt;import&lt;/span&gt; DataFrame
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pyspark.sql &lt;span style="color:#f92672"&gt;import&lt;/span&gt; functions &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; f
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pyspark.sql.streaming &lt;span style="color:#f92672"&gt;import&lt;/span&gt; DataStreamWriter, StreamingQuery
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;NUM &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;SOURCE &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;rate&amp;#34;&lt;/span&gt; &lt;span style="color:#75715e"&gt;# delta, kafka, rate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;TARGET &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;noop&amp;#34;&lt;/span&gt; &lt;span style="color:#75715e"&gt;# delta, kafka, console, noop&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;QUERY_NAME &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;f&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&lt;/span&gt;SOURCE&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;-&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&lt;/span&gt;TARGET&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;-&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&lt;/span&gt;NUM&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;CHECKPOINT_LOCATION &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;f&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;file:/tmp/checkpoint/&lt;/span&gt;&lt;span style="color:#e6db74"&gt;{&lt;/span&gt;QUERY_NAME&lt;span style="color:#e6db74"&gt;}&lt;/span&gt;&lt;span style="color:#e6db74"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;readstream_options &lt;span style="color:#f92672"&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;rowsPerSecond&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;1&amp;#34;&lt;/span&gt;, &lt;span style="color:#75715e"&gt;# rate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# &amp;#34;skipChangeCommits&amp;#34;: &amp;#34;true&amp;#34; # delta&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# &amp;#34;kafka.bootstrap.servers&amp;#34;: &amp;#34;localhost:9092&amp;#34;, # kafka&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# &amp;#34;subscribe&amp;#34;: &amp;#34;topic1&amp;#34;, # kafka&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# &amp;#34;startingOffsets&amp;#34;: &amp;#34;latest&amp;#34;, # kafka&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;trigger_options &lt;span style="color:#f92672"&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;processingTime&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;1 seconds&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;# &amp;#34;availableNow&amp;#34;: &amp;#34;true&amp;#34;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;writestream_options &lt;span style="color:#f92672"&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;checkpointLocation&amp;#34;&lt;/span&gt;: CHECKPOINT_LOCATION,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;def&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;apply_transformations&lt;/span&gt;(df: DataFrame) &lt;span style="color:#f92672"&gt;-&amp;gt;&lt;/span&gt; DataFrame:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; df&lt;span style="color:#f92672"&gt;.&lt;/span&gt;withColumn(&lt;span style="color:#e6db74"&gt;&amp;#34;current_timestamp&amp;#34;&lt;/span&gt;, f&lt;span style="color:#f92672"&gt;.&lt;/span&gt;current_timestamp())
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;readstream_df: DataFrame &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; spark
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;readStream
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;format(SOURCE)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;options(&lt;span style="color:#f92672"&gt;**&lt;/span&gt;readstream_options)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;load()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;transformed_df: DataFrame &lt;span style="color:#f92672"&gt;=&lt;/span&gt; apply_transformations(df&lt;span style="color:#f92672"&gt;=&lt;/span&gt;readstream_df)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;datastream_writer: DataStreamWriter &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; transformed_df
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;writeStream
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;trigger(&lt;span style="color:#f92672"&gt;**&lt;/span&gt;trigger_options)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;format(TARGET)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;options(&lt;span style="color:#f92672"&gt;**&lt;/span&gt;writestream_options)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;queryName(QUERY_NAME)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;streaming_query: StreamingQuery &lt;span style="color:#f92672"&gt;=&lt;/span&gt; datastream_writer&lt;span style="color:#f92672"&gt;.&lt;/span&gt;start()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="a-summary-of-the-above-template"&gt;A summary of the above template&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dictionaries to manage:
+&lt;ul&gt;
+&lt;li&gt;stream source options&lt;/li&gt;
+&lt;li&gt;stream sink options&lt;/li&gt;
+&lt;li&gt;trigger options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;A function to manage all transformations using &lt;a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.transform.html"&gt;DataFrame.transform&lt;/a&gt; prior to writing to the sink, that can be expanded on&lt;/li&gt;
+&lt;li&gt;A snippet for the &lt;a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.ss/api/pyspark.sql.streaming.DataStreamWriter.html"&gt;DataStreamWriter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;And finally, a call to &lt;code&gt;.start()&lt;/code&gt; to return a &lt;a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.ss/api/pyspark.sql.streaming.StreamingQuery.html"&gt;StreamingQuery&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Note that this would need to change to &lt;code&gt;toTable()&lt;/code&gt; if writing to a table sink such as &lt;code&gt;delta&lt;/code&gt; or &lt;code&gt;iceberg&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="further-templatizing-this-code"&gt;Further templatizing this code&lt;/h3&gt;
+&lt;p&gt;You may wnat to codify this further into a markup language like &lt;code&gt;yaml&lt;/code&gt; and then make the configuration strongly-typed using &lt;code&gt;pydantic&lt;/code&gt;. Here&amp;rsquo;s an example of what that might look like:&lt;/p&gt;</description></item><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Bufstream is said to be a drop-in replacement for Kafka via a simple Go-based binary&lt;/li&gt;
 &lt;li&gt;Bufstream also standardizes on Protocol Buffers as the serialization format for messaging and integrates well with Lakehouses by writing directly to an Iceberg sink&lt;/li&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Brock B's Blog</title><link>https://be-rock.github.io/blog/</link><description>Recent content on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 20:21:51 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Config on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/config/</link><description>Recent content in Config on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 20:21:51 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/config/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/exploring-apache-spark-stream-sources-and-sinks/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
 &lt;p&gt;This is a template / code snippet that can be useful to quickly setup a Spark Streaming Query with a source and sink. The template will not work in all circumstances, such as a &lt;code&gt;foreachBatch&lt;/code&gt; sink but is enough to get you started in a quick way, with some examples below on how this could be templatized even more using a markup language like &lt;code&gt;yaml&lt;/code&gt;, if so desired.&lt;/p&gt;
 &lt;h2 id="a-streaming-query-template"&gt;A Streaming Query template&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pyspark.sql &lt;span style="color:#f92672"&gt;import&lt;/span&gt; DataFrame
@@ -71,59 +71,4 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="further-templatizing-this-code"&gt;Further templatizing this code&lt;/h3&gt;
-&lt;p&gt;You may wnat to codify this further into a markup language like &lt;code&gt;yaml&lt;/code&gt; and then make the configuration strongly-typed using &lt;code&gt;pydantic&lt;/code&gt;. Here&amp;rsquo;s an example of what that might look like:&lt;/p&gt;</description></item><item><title>My Recent Python Toolkit</title><link>https://be-rock.github.io/blog/posts/my-recent-python-toolkit/</link><pubDate>Mon, 29 Sep 2025 21:00:24 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/my-recent-python-toolkit/</guid><description>&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;The Python development ecosystem has changed pretty dramatically over the recent years.&lt;/p&gt;
-&lt;p&gt;This post provides a practical introduction to the toolkit that I&amp;rsquo;ve been using, explaining why I chose each tool and how they work together.&lt;/p&gt;
-&lt;h2 id="the-toolkit"&gt;The Toolkit&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#command-runner---make"&gt;Command Runner&lt;/a&gt; - &lt;code&gt;make&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#configuration---pydantic"&gt;Configuration&lt;/a&gt; - &lt;code&gt;pydantic&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#containerization---podman"&gt;Containerization&lt;/a&gt; - &lt;code&gt;podman&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#continuous-integration---github-actions"&gt;Continuous Integration&lt;/a&gt; - GitHub Actions&lt;/li&gt;
-&lt;li&gt;&lt;a href="#ide-cursor-or-vs-code"&gt;IDE&lt;/a&gt; - &lt;code&gt;cursor&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#linting--formatting---ruff"&gt;Linting &amp;amp; Formatting&lt;/a&gt; - &lt;code&gt;ruff&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#load-testing---locust"&gt;Load Testing&lt;/a&gt; - &lt;code&gt;locust&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#logging---logging"&gt;Logging&lt;/a&gt; - &lt;code&gt;logging&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pre-commit---prek"&gt;Pre-commit&lt;/a&gt; - &lt;code&gt;prek&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#python-project-and-environment-management---uv"&gt;Python project and environment management&lt;/a&gt; - &lt;code&gt;uv&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#scheduling---cron"&gt;Scheduling&lt;/a&gt; - &lt;code&gt;cron&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#testing---pytest"&gt;Testing&lt;/a&gt; - &lt;code&gt;pytest&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#type-checking---ty"&gt;Type Checking&lt;/a&gt; - &lt;code&gt;ty&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="command-runner---make"&gt;Command Runner - &lt;code&gt;make&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;While not initially designed for this purpose, &lt;code&gt;make&lt;/code&gt; works very well as a command runner. A &lt;code&gt;Makefile&lt;/code&gt; can be created in your project root to represent common ways for your project to be used. It is also self-documenting and a helpful way for newcomers to get started with your project.&lt;/p&gt;</description></item><item><title>Evaluating V (Language)</title><link>https://be-rock.github.io/blog/posts/evaluating-vlang/</link><pubDate>Mon, 25 Aug 2025 19:39:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/evaluating-vlang/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I enjoy learning new languages, and decided it would be fun to do some learning the &amp;lsquo;old-school&amp;rsquo; way, meaning no AI-assisted coding, trial-and-error, and using the docs. Note - LLMs will be used merely as a search-engine equivalent to aid with solutions and resolve issues, but &lt;em&gt;not&lt;/em&gt; to build a solution.&lt;/li&gt;
-&lt;li&gt;I have worked with numerous languages in the past, but 2 that have been on my radar are &lt;a href="https://go.dev/"&gt;go&lt;/a&gt; and &lt;a href="https://vlang.io/"&gt;V&lt;/a&gt;. This post will be about &lt;code&gt;V&lt;/code&gt; but I hope to do something similar for &lt;code&gt;go&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;V&lt;/code&gt; promises to be stable (despite not yet having reached 1.0 release), easy to learn (&amp;ldquo;can be learned over the course of a weekend&amp;rdquo;), fast, and is statically typed.&lt;/p&gt;</description></item><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Bufstream is said to be a drop-in replacement for Kafka via a simple Go-based binary&lt;/li&gt;
-&lt;li&gt;Bufstream also standardizes on Protocol Buffers as the serialization format for messaging and integrates well with Lakehouses by writing directly to an Iceberg sink&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="what-is-the-point"&gt;What is the point?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I often work with streaming and Kafka with Apache Spark. Setting up and managing a Kafka cluster can be cumbersome so having a quick, easy, standardized, and leightweight way to run Kafka is appealing.&lt;/li&gt;
-&lt;li&gt;This blog attempts to test the claims of Buf - the company behind:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Bufstream&lt;/code&gt; - the &amp;ldquo;drop-in replacement for Kafka&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BSR&lt;/code&gt; - the Buf Schema Registry which implements the Confluent Schema Registry API&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;buf&lt;/code&gt; CLI - a simple way to develop and manage Protobuf&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note that the &lt;code&gt;buf&lt;/code&gt; CLI will be referenced in this blog, but less of a focus.&lt;/p&gt;</description></item><item><title>Using a Container to run PySpark Unit Tests</title><link>https://be-rock.github.io/blog/posts/pyspark-container-unit-tests/</link><pubDate>Sat, 12 Jul 2025 12:58:15 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-container-unit-tests/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Running PySpark unit tests in a Container can make for a repeatable, portable way to unit test your code&lt;/li&gt;
-&lt;li&gt;This simple library can be used as a template to create a repeatable set of Pyspark tests for both reference and understanding&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="why-just-why"&gt;Why, just why?&lt;/h2&gt;
-&lt;p&gt;Hopefully you do not need to be convinced of the value of unit testing; there is really no shortage of content on this topic. If we can agree on that, what I have found in my day-to-day is that I am often in the Spark shell trying to evaluate functions, generate explain plans, and trying to confirm my understanding of internals.&lt;/p&gt;</description></item><item><title>Building a Pyspark Custom Data Sources for DuckDB</title><link>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</link><pubDate>Sat, 14 Jun 2025 23:51:42 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Apache Spark 4.0 and Databricks 15.2 supports custom Pyspark Data Sources&lt;/li&gt;
-&lt;li&gt;A custom data source allows you to connect to a source system that that Spark may not currently have support for&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="pyspark-custom-data-sources---an-overview"&gt;PySpark Custom Data Sources - an Overview&lt;/h2&gt;
-&lt;p&gt;Starting with &lt;a href="https://spark.apache.org/docs/latest/api/python/tutorial/sql/python_data_source.html"&gt;Apache Spark 4.0&lt;/a&gt; and &lt;a href="https://docs.databricks.com/aws/en/pyspark/datasources"&gt;Databricks 15.2&lt;/a&gt;, PySpark supports custom data sources.&lt;/p&gt;
-&lt;p&gt;So what &lt;em&gt;are&lt;/em&gt; PySpark Custom Data Sources?&lt;/p&gt;
-&lt;p&gt;Custom data sources allow you to define a source &lt;code&gt;format&lt;/code&gt; other than the default built-in formats such as csv, json, and parquet. There are many other supported formats such as Delta and Iceberg, but if there is no community or commercial support offered for the data source of interest, you can extend and inherit some builtin PySpark classes and roll your own. One common example of this may be calling a REST endpoint.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;You may wnat to codify this further into a markup language like &lt;code&gt;yaml&lt;/code&gt; and then make the configuration strongly-typed using &lt;code&gt;pydantic&lt;/code&gt;. Here&amp;rsquo;s an example of what that might look like:&lt;/p&gt;</description></item></channel></rss>
