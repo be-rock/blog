@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Streaming on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/streaming/</link><description>Recent content in Streaming on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 20:21:51 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/streaming/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/apache-spark-streaming-templatized/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/apache-spark-streaming-templatized/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Config on Brock B's Blog</title><link>https://be-rock.github.io/blog/tags/config/</link><description>Recent content in Config on Brock B's Blog</description><generator>Hugo -- 0.151.0</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2025 20:21:51 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/config/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/apache-spark-streaming-templatized/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/apache-spark-streaming-templatized/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
 &lt;p&gt;This is a template / code snippet that can be useful to quickly setup a Spark Streaming Query with a source and sink. The template will not work in all circumstances, such as a &lt;code&gt;foreachBatch&lt;/code&gt; sink but is enough to get you started in a quick way, with some examples below on how this could be templatized even more using a markup language like &lt;code&gt;yaml&lt;/code&gt;, if so desired.&lt;/p&gt;
 &lt;h2 id="a-streaming-query-template"&gt;A Streaming Query template&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; pyspark.sql &lt;span style="color:#f92672"&gt;import&lt;/span&gt; DataFrame
@@ -71,20 +71,4 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="further-templatizing-this-code"&gt;Further templatizing this code&lt;/h3&gt;
-&lt;p&gt;You may wnat to codify this further into a markup language like &lt;code&gt;yaml&lt;/code&gt; and then make the configuration strongly-typed using &lt;code&gt;pydantic&lt;/code&gt;. Here&amp;rsquo;s an example of what that might look like:&lt;/p&gt;</description></item><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Bufstream is said to be a drop-in replacement for Kafka via a simple Go-based binary&lt;/li&gt;
-&lt;li&gt;Bufstream also standardizes on Protocol Buffers as the serialization format for messaging and integrates well with Lakehouses by writing directly to an Iceberg sink&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="what-is-the-point"&gt;What is the point?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I often work with streaming and Kafka with Apache Spark. Setting up and managing a Kafka cluster can be cumbersome so having a quick, easy, standardized, and leightweight way to run Kafka is appealing.&lt;/li&gt;
-&lt;li&gt;This blog attempts to test the claims of Buf - the company behind:
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Bufstream&lt;/code&gt; - the &amp;ldquo;drop-in replacement for Kafka&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BSR&lt;/code&gt; - the Buf Schema Registry which implements the Confluent Schema Registry API&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;buf&lt;/code&gt; CLI - a simple way to develop and manage Protobuf&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Note that the &lt;code&gt;buf&lt;/code&gt; CLI will be referenced in this blog, but less of a focus.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;You may wnat to codify this further into a markup language like &lt;code&gt;yaml&lt;/code&gt; and then make the configuration strongly-typed using &lt;code&gt;pydantic&lt;/code&gt;. Here&amp;rsquo;s an example of what that might look like:&lt;/p&gt;</description></item></channel></rss>
