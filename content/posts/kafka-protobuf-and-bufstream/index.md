@@ -50,7 +50,7 @@ curl -sSL -o bufstream \
 <snipped>
 ...
 time=2025-08-05T22:45:14.648-05:00 level=INFO msg="kafka server started" host=localhost port=9092 tls=false public=true
-time=2025-08-05T22:45:14.648-05:00 level=INddFO msg="kafka server started" host=127.0.0.1 port=9092 tls=false
+time=2025-08-05T22:45:14.648-05:00 level=INFO msg="kafka server started" host=127.0.0.1 port=9092 tls=false
 time=2025-08-05T22:45:14.648-05:00 level=INFO msg="kafka server started" host=::1 port=9092 tls=false
 time=2025-08-05T22:45:14.664-05:00 level=INFO msg="updating ownership" oldShardNum=0 oldShardCount=0 shardNum=0 shardCount=1
 ```
