@@ -86,6 +86,19 @@ streaming_query: StreamingQuery = datastream_writer.start()
 
 You may wnat to codify this further into a markup language like `yaml` and then make the configuration strongly-typed using `pydantic`. Here's an example of what that might look like:
 
+```yaml
+# app-conf.yaml
+source:
+  format: rate
+  rowsPerSecond: 1
+trigger:
+  processingTime: "1 seconds"
+target:
+  checkpointLocation: "/tmp/checkpoint"
+  format: noop
+query_name: my-streaming-query
+```
+
 ```python
 from pydantic_settings import BaseSettings, YamlConfigSettingsSource
 
