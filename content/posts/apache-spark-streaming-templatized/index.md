@@ -116,6 +116,9 @@ config: YamlConfigSettingsSource = YamlConfigSettingsSource(
 config.yaml_data
 {'source': {'format': 'rate', 'rowsPerSecond': 1},
  'trigger': {'processingTime': '1 seconds'},
- 'target': {'checkpointLocation': '/tmp/', 'format': 'noop'},
+ 'target': {'checkpointLocation': '/tmp/checkpoint', 'format': 'noop'},
  'query_name': 'my-streaming-query'}
+
+app_config: AppConfig = AppConfig(**config.yaml_data)
+assert app_config.query_name == "my-streaming-query"
 ```
