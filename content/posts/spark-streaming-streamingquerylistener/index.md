@@ -1,7 +1,7 @@
 ---
 title: "Using the StreamingQueryListener with Spark Streaming"
 date: 2025-10-13T20:08:27-05:00
-draft: true
+draft: false
 showToc: true
 tags:
   - spark
