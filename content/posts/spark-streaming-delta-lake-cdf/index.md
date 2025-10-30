@@ -1,4 +1,5 @@
---- title: "Change Data Capture via Spark Streaming and Delta Lake CDF"
+---
+title: "Change Data Capture via Spark Streaming and Delta Lake CDF"
 date: 2025-10-27T10:55:10-05:00
 draft: false
 showToc: true
