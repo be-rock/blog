@@ -1,6 +1,6 @@
 baseURL = "https://be-rock.github.io/blog/"
 languageCode = "en-us"
-title = "Brock B's Blog"
+title = "Brock's Blog on Data|DevOps|Cloud"
 theme = "PaperMod"
 
 [params]
@@ -13,8 +13,8 @@ showWordCount = true
 
 [params.profileMode]
 enabled = true
-title = "Brock B's Blog"
-subtitle = "A tech enthusiast learning through writing"
+title = "Brock's Blog Data|DevOps|Cloud"
+subtitle = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
 # imageUrl = "images/profile.jpg"
 # imageTitle = "Profile image"
 # imageWidth = 120
