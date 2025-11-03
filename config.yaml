@@ -32,6 +32,8 @@ params:
     - name: "Github"
       url: "https://github.com/be-rock"
 
+    - name: "rss"
+
     # - name: "Linkedin"
     #   url: "https://www.linkedin.com/in/yourusername/"
 
@@ -56,11 +58,6 @@ menu:
       name: "Search"
       url: "/search/"
       weight: 4
-
-    - identifier: "conversations"
-      name: "Conversations"
-      url: "/conversations/"
-      weight: 5
 
 outputs:
   home:
