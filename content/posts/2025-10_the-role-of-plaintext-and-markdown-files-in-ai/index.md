@@ -1,7 +1,7 @@
 ---
 title: "The Role of plaintext and Markdown Files in AI-driven development"
 date: 2025-11-01T22:02:06-05:00
-draft: true
+draft: false
 showToc: true
 summary: "Using plaintext and Markdown Files in AI-driven development"
 tags:
@@ -20,7 +20,7 @@ Examples of these include:
 
 - `llms.txt`
 - Cursor rules
-- `AGENTS.md`
+- `AGENTS.md` (and `CLAUDE.md`)
 
 ## llms.txt
 
