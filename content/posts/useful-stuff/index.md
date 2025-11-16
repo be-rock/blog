@@ -1,7 +1,7 @@
 ---
 title: "Useful Stuff"
 date: 2025-11-15T22:36:28
-draft: true
+draft: false
 showToc: true
 tags:
   - useful
