@@ -1,4 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/posts/</link><description>Recent content in Posts on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- 0.152.2</generator><language>en-us</language><lastBuildDate>Sat, 01 Nov 2025 22:02:06 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>The Role of plaintext and Markdown Files in AI-driven development</title><link>https://be-rock.github.io/blog/posts/2025-10_the-role-of-plaintext-and-markdown-files-in-ai/</link><pubDate>Sat, 01 Nov 2025 22:02:06 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025-10_the-role-of-plaintext-and-markdown-files-in-ai/</guid><description>Using plaintext and Markdown Files in AI-driven development</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/posts/</link><description>Recent content in Posts on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- 0.152.2</generator><language>en-us</language><lastBuildDate>Sat, 15 Nov 2025 22:36:28 +0000</lastBuildDate><atom:link href="https://be-rock.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Useful Stuff</title><link>https://be-rock.github.io/blog/posts/useful-stuff/</link><pubDate>Sat, 15 Nov 2025 22:36:28 +0000</pubDate><guid>https://be-rock.github.io/blog/posts/useful-stuff/</guid><description>&lt;p&gt;This page intends to be a catch-all of useful stuff that I gather over time.&lt;/p&gt;
+&lt;h2 id="2025"&gt;2025&lt;/h2&gt;
+&lt;h3 id="2025-11"&gt;2025-11&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Provide a custom message for each commit to a Delta table (&lt;code&gt;#deltalake&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; datetime
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; json
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# custom metadata&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;json_data: str &lt;span style="color:#f92672"&gt;=&lt;/span&gt; json&lt;span style="color:#f92672"&gt;.&lt;/span&gt;dumps({
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style="color:#e6db74"&gt;&amp;#34;my-app&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;event_timestamp&amp;#34;&lt;/span&gt;: datetime&lt;span style="color:#f92672"&gt;.&lt;/span&gt;datetime&lt;span style="color:#f92672"&gt;.&lt;/span&gt;utcnow()&lt;span style="color:#f92672"&gt;.&lt;/span&gt;isoformat()
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# delta write&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; spark&lt;span style="color:#f92672"&gt;.&lt;/span&gt;range(&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; write&lt;span style="color:#f92672"&gt;.&lt;/span&gt;format(&lt;span style="color:#e6db74"&gt;&amp;#34;delta&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;option(&lt;span style="color:#e6db74"&gt;&amp;#34;userMetadata&amp;#34;&lt;/span&gt;, json_data)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;mode(&lt;span style="color:#e6db74"&gt;&amp;#34;append&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;.&lt;/span&gt;saveAsTable(&lt;span style="color:#e6db74"&gt;&amp;#34;t1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# read the userMetadata from the delta history&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;with&lt;/span&gt; hist &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; desc history t1
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;select
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; userMetadata
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; hist
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;# {&amp;#34;name&amp;#34;: &amp;#34;my-app&amp;#34;, &amp;#34;event_timestamp&amp;#34;: &amp;#34;2025-11-09...&amp;#34;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="2"&gt;
+&lt;li&gt;Attach a sqlite database to the duckdb CLI. It&amp;rsquo;s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (&lt;code&gt;#duckdb&lt;/code&gt; &lt;code&gt;#sqlite&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;duckdb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D INSTALL sqlite;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D LOAD sqlite;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D ATTACH &lt;span style="color:#e6db74"&gt;&amp;#39;mydb.db&amp;#39;&lt;/span&gt; AS db &lt;span style="color:#f92672"&gt;(&lt;/span&gt;TYPE sqlite&lt;span style="color:#f92672"&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D.databases
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D USE db;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D.tables
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;D &lt;span style="color:#66d9ef"&gt;select&lt;/span&gt; * from mytable;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start="3"&gt;
+&lt;li&gt;Google released Code Wiki which is described as:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date.
+Ref: &lt;a href="https://codewiki.google/"&gt;https://codewiki.google/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>The Role of plaintext and Markdown Files in AI-driven development</title><link>https://be-rock.github.io/blog/posts/2025-10_the-role-of-plaintext-and-markdown-files-in-ai/</link><pubDate>Sat, 01 Nov 2025 22:02:06 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025-10_the-role-of-plaintext-and-markdown-files-in-ai/</guid><description>Using plaintext and Markdown Files in AI-driven development</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://delta.io/"&gt;Delta Lake&lt;/a&gt; provides support for CDC (Change Data Capture) through its internal &lt;a href="https://docs.delta.io/delta-change-data-feed/"&gt;Change Data Feed&lt;/a&gt; (CDF).&lt;/p&gt;
 &lt;p&gt;The docs describe this feature as:&lt;/p&gt;
 &lt;blockquote&gt;

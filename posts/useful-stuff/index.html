@@ -1,0 +1,142 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Useful Stuff | Brock's Blog on Data|DevOps|Cloud</title><meta name=keywords content="useful"><meta name=description content='This page intends to be a catch-all of useful stuff that I gather over time.
+2025
+2025-11
+
+Provide a custom message for each commit to a Delta table (#deltalake)
+
+import datetime
+import json
+
+# custom metadata
+json_data: str = json.dumps({
+    "name": "my-app",
+    "event_timestamp": datetime.datetime.utcnow().isoformat()
+})
+
+# delta write
+(
+    spark.range(1)
+    write.format("delta")
+    .option("userMetadata", json_data)
+    .mode("append")
+    .saveAsTable("t1")
+)
+
+# read the userMetadata from the delta history
+with hist as (
+    desc history t1
+)
+select
+  userMetadata
+from
+  hist
+# {"name": "my-app", "event_timestamp": "2025-11-09..."}
+
+Attach a sqlite database to the duckdb CLI. It&rsquo;s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (#duckdb #sqlite)
+
+duckdb
+D INSTALL sqlite;
+D LOAD sqlite;
+D ATTACH &#39;mydb.db&#39; AS db (TYPE sqlite);
+D.databases
+D USE db;
+D.tables
+D select * from mytable;
+
+Google released Code Wiki which is described as:
+
+
+A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date.
+Ref: https://codewiki.google/'><meta name=author content><link rel=canonical href=https://be-rock.github.io/blog/posts/useful-stuff/><link crossorigin=anonymous href=/blog/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css integrity="sha256-IhHKMWS+eDACT2qtKzouUghDpk+PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as=style><link rel=icon href=https://be-rock.github.io/blog/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://be-rock.github.io/blog/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://be-rock.github.io/blog/favicon-32x32.png><link rel=apple-touch-icon href=https://be-rock.github.io/blog/apple-touch-icon.png><link rel=mask-icon href=https://be-rock.github.io/blog/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://be-rock.github.io/blog/posts/useful-stuff/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://be-rock.github.io/blog/posts/useful-stuff/"><meta property="og:site_name" content="Brock's Blog on Data|DevOps|Cloud"><meta property="og:title" content="Useful Stuff"><meta property="og:description" content='This page intends to be a catch-all of useful stuff that I gather over time.
+2025 2025-11 Provide a custom message for each commit to a Delta table (#deltalake) import datetime import json # custom metadata json_data: str = json.dumps({ "name": "my-app", "event_timestamp": datetime.datetime.utcnow().isoformat() }) # delta write ( spark.range(1) write.format("delta") .option("userMetadata", json_data) .mode("append") .saveAsTable("t1") ) # read the userMetadata from the delta history with hist as ( desc history t1 ) select userMetadata from hist # {"name": "my-app", "event_timestamp": "2025-11-09..."} Attach a sqlite database to the duckdb CLI. It’s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (#duckdb #sqlite) duckdb D INSTALL sqlite; D LOAD sqlite; D ATTACH &#39;mydb.db&#39; AS db (TYPE sqlite); D.databases D USE db; D.tables D select * from mytable; Google released Code Wiki which is described as: A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date. Ref: https://codewiki.google/'><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-15T22:36:28+00:00"><meta property="article:modified_time" content="2025-11-15T22:36:28+00:00"><meta property="article:tag" content="Useful"><meta name=twitter:card content="summary"><meta name=twitter:title content="Useful Stuff"><meta name=twitter:description content='This page intends to be a catch-all of useful stuff that I gather over time.
+2025
+2025-11
+
+Provide a custom message for each commit to a Delta table (#deltalake)
+
+import datetime
+import json
+
+# custom metadata
+json_data: str = json.dumps({
+    "name": "my-app",
+    "event_timestamp": datetime.datetime.utcnow().isoformat()
+})
+
+# delta write
+(
+    spark.range(1)
+    write.format("delta")
+    .option("userMetadata", json_data)
+    .mode("append")
+    .saveAsTable("t1")
+)
+
+# read the userMetadata from the delta history
+with hist as (
+    desc history t1
+)
+select
+  userMetadata
+from
+  hist
+# {"name": "my-app", "event_timestamp": "2025-11-09..."}
+
+Attach a sqlite database to the duckdb CLI. It&rsquo;s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (#duckdb #sqlite)
+
+duckdb
+D INSTALL sqlite;
+D LOAD sqlite;
+D ATTACH &#39;mydb.db&#39; AS db (TYPE sqlite);
+D.databases
+D USE db;
+D.tables
+D select * from mytable;
+
+Google released Code Wiki which is described as:
+
+
+A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date.
+Ref: https://codewiki.google/'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://be-rock.github.io/blog/posts/"},{"@type":"ListItem","position":2,"name":"Useful Stuff","item":"https://be-rock.github.io/blog/posts/useful-stuff/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Useful Stuff","name":"Useful Stuff","description":"This page intends to be a catch-all of useful stuff that I gather over time.\n2025 2025-11 Provide a custom message for each commit to a Delta table (#deltalake) import datetime import json # custom metadata json_data: str = json.dumps({ \u0026#34;name\u0026#34;: \u0026#34;my-app\u0026#34;, \u0026#34;event_timestamp\u0026#34;: datetime.datetime.utcnow().isoformat() }) # delta write ( spark.range(1) write.format(\u0026#34;delta\u0026#34;) .option(\u0026#34;userMetadata\u0026#34;, json_data) .mode(\u0026#34;append\u0026#34;) .saveAsTable(\u0026#34;t1\u0026#34;) ) # read the userMetadata from the delta history with hist as ( desc history t1 ) select userMetadata from hist # {\u0026#34;name\u0026#34;: \u0026#34;my-app\u0026#34;, \u0026#34;event_timestamp\u0026#34;: \u0026#34;2025-11-09...\u0026#34;} Attach a sqlite database to the duckdb CLI. It\u0026rsquo;s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (#duckdb #sqlite) duckdb D INSTALL sqlite; D LOAD sqlite; D ATTACH \u0026#39;mydb.db\u0026#39; AS db (TYPE sqlite); D.databases D USE db; D.tables D select * from mytable; Google released Code Wiki which is described as: A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date. Ref: https://codewiki.google/\n","keywords":["useful"],"articleBody":"This page intends to be a catch-all of useful stuff that I gather over time.\n2025 2025-11 Provide a custom message for each commit to a Delta table (#deltalake) import datetime import json # custom metadata json_data: str = json.dumps({ \"name\": \"my-app\", \"event_timestamp\": datetime.datetime.utcnow().isoformat() }) # delta write ( spark.range(1) write.format(\"delta\") .option(\"userMetadata\", json_data) .mode(\"append\") .saveAsTable(\"t1\") ) # read the userMetadata from the delta history with hist as ( desc history t1 ) select userMetadata from hist # {\"name\": \"my-app\", \"event_timestamp\": \"2025-11-09...\"} Attach a sqlite database to the duckdb CLI. It’s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (#duckdb #sqlite) duckdb D INSTALL sqlite; D LOAD sqlite; D ATTACH 'mydb.db' AS db (TYPE sqlite); D.databases D USE db; D.tables D select * from mytable; Google released Code Wiki which is described as: A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date. Ref: https://codewiki.google/\nHere are a few interesting repos to assess:\nhttps://codewiki.google/github.com/apache/spark https://codewiki.google/github.com/duckdb/duckdb https://codewiki.google/github.com/jlowin/fastmcp https://codewiki.google/github.com/mlflow/mlflow https://codewiki.google/github.com/run-llama/llama_index https://codewiki.google/github.com/neondatabase/neon ","wordCount":"171","inLanguage":"en","datePublished":"2025-11-15T22:36:28Z","dateModified":"2025-11-15T22:36:28Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://be-rock.github.io/blog/posts/useful-stuff/"},"publisher":{"@type":"Organization","name":"Brock's Blog on Data|DevOps|Cloud","logo":{"@type":"ImageObject","url":"https://be-rock.github.io/blog/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://be-rock.github.io/blog/ accesskey=h title="Brock's Blog on Data|DevOps|Cloud (Alt + H)">Brock's Blog on Data|DevOps|Cloud</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://be-rock.github.io/blog/ title=Home><span>Home</span></a></li><li><a href=https://be-rock.github.io/blog/posts/ title=Posts><span>Posts</span></a></li><li><a href=https://be-rock.github.io/blog/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://be-rock.github.io/blog/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Useful Stuff</h1><div class=post-meta><span title='2025-11-15 22:36:28 +0000 UTC'>November 15, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;171 words</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#2025 aria-label=2025>2025</a><ul><li><a href=#2025-11 aria-label=2025-11>2025-11</a></li></ul></li></ul></div></details></div><div class=post-content><p>This page intends to be a catch-all of useful stuff that I gather over time.</p><h2 id=2025>2025<a hidden class=anchor aria-hidden=true href=#2025>#</a></h2><h3 id=2025-11>2025-11<a hidden class=anchor aria-hidden=true href=#2025-11>#</a></h3><ol><li>Provide a custom message for each commit to a Delta table (<code>#deltalake</code>)</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> datetime
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># custom metadata</span>
+</span></span><span style=display:flex><span>json_data: str <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span>dumps({
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;my-app&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;event_timestamp&#34;</span>: datetime<span style=color:#f92672>.</span>datetime<span style=color:#f92672>.</span>utcnow()<span style=color:#f92672>.</span>isoformat()
+</span></span><span style=display:flex><span>})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># delta write</span>
+</span></span><span style=display:flex><span>(
+</span></span><span style=display:flex><span>    spark<span style=color:#f92672>.</span>range(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    write<span style=color:#f92672>.</span>format(<span style=color:#e6db74>&#34;delta&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>option(<span style=color:#e6db74>&#34;userMetadata&#34;</span>, json_data)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>mode(<span style=color:#e6db74>&#34;append&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>saveAsTable(<span style=color:#e6db74>&#34;t1&#34;</span>)
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># read the userMetadata from the delta history</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> hist <span style=color:#66d9ef>as</span> (
+</span></span><span style=display:flex><span>    desc history t1
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>select
+</span></span><span style=display:flex><span>  userMetadata
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span>
+</span></span><span style=display:flex><span>  hist
+</span></span><span style=display:flex><span><span style=color:#75715e># {&#34;name&#34;: &#34;my-app&#34;, &#34;event_timestamp&#34;: &#34;2025-11-09...&#34;}</span>
+</span></span></code></pre></div><ol start=2><li>Attach a sqlite database to the duckdb CLI. It&rsquo;s a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (<code>#duckdb</code> <code>#sqlite</code>)</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>duckdb
+</span></span><span style=display:flex><span>D INSTALL sqlite;
+</span></span><span style=display:flex><span>D LOAD sqlite;
+</span></span><span style=display:flex><span>D ATTACH <span style=color:#e6db74>&#39;mydb.db&#39;</span> AS db <span style=color:#f92672>(</span>TYPE sqlite<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span>D.databases
+</span></span><span style=display:flex><span>D USE db;
+</span></span><span style=display:flex><span>D.tables
+</span></span><span style=display:flex><span>D <span style=color:#66d9ef>select</span> * from mytable;
+</span></span></code></pre></div><ol start=3><li>Google released Code Wiki which is described as:</li></ol><blockquote><p>A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date.
+Ref: <a href=https://codewiki.google/>https://codewiki.google/</a></p></blockquote><p>Here are a few interesting repos to assess:</p><ul><li><a href=https://codewiki.google/github.com/apache/spark>https://codewiki.google/github.com/apache/spark</a></li><li><a href=https://codewiki.google/github.com/duckdb/duckdb>https://codewiki.google/github.com/duckdb/duckdb</a></li><li><a href=https://codewiki.google/github.com/jlowin/fastmcp>https://codewiki.google/github.com/jlowin/fastmcp</a></li><li><a href=https://codewiki.google/github.com/mlflow/mlflow>https://codewiki.google/github.com/mlflow/mlflow</a></li><li><a href=https://codewiki.google/github.com/run-llama/llama_index>https://codewiki.google/github.com/run-llama/llama_index</a></li><li><a href=https://codewiki.google/github.com/neondatabase/neon>https://codewiki.google/github.com/neondatabase/neon</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://be-rock.github.io/blog/tags/useful/>Useful</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://be-rock.github.io/blog/>Brock's Blog on Data|DevOps|Cloud</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
