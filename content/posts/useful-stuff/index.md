@@ -1,17 +1,20 @@
 ---
 title: "Useful Stuff"
-date: 2025-11-09T20:30:07-06:00
+date: 2025-11-15T22:36:28
 draft: true
 showToc: true
 tags:
-  - miscellaneous
+  - useful
 ---
 
 This page intends to be a catch-all of useful stuff that I gather over time.
 
 ## 2025
 
-1. Provide a custom message for each commit to a Delta table (`#delta lake`)
+### 2025-11
+
+1. Provide a custom message for each commit to a Delta table (`#deltalake`)
+
 ```python
 import datetime
 import json
@@ -53,3 +56,17 @@ D USE db;
 D.tables
 D select * from mytable;
 ```
+
+3. Google released Code Wiki which is described as:
+
+> A new perspective on development for the agentic era. Gemini-generated documentation, always up-to-date.
+> Ref: https://codewiki.google/
+
+Here are a few interesting repos to assess:
+
+- https://codewiki.google/github.com/apache/spark
+- https://codewiki.google/github.com/duckdb/duckdb
+- https://codewiki.google/github.com/jlowin/fastmcp
+- https://codewiki.google/github.com/mlflow/mlflow
+- https://codewiki.google/github.com/run-llama/llama_index
+- https://codewiki.google/github.com/neondatabase/neon
