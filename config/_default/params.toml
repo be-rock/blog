@@ -5,7 +5,8 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/configuration/#theme-parameters
 
-colorScheme = "blowfish"
+# colorScheme = "github"
+colorScheme = "ocean"
 defaultAppearance = "light"
 autoSwitchAppearance = true
 
@@ -29,6 +30,7 @@ autoLastmod = true
 
 [homepage]
   layout = "profile"
+#   layout = "background"
   showRecent = true
   showRecentItems = 10
   showMoreLink = true
@@ -38,22 +40,22 @@ autoLastmod = true
 [article]
   showDate = true
   showDateUpdated = false
-  showAuthor = true
+  showAuthor = false
   showHero = false
   showBreadcrumbs = false
   showDraftLabel = true
   showReadingTime = true
-  showTableOfContents = true
+  showTableOfContents = false
   showWordCount = true
   showPagination = true
   invertPagination = false
   showTaxonomies = true
-  sharingLinks = ["linkedin", "twitter", "reddit", "email"]
+#   sharingLinks = ["linkedin", "twitter", "reddit", "email"]
 
 [list]
   showBreadcrumbs = false
-  showSummary = true
-  showTableOfContents = false
+  showSummary = false
+  showTableOfContents = true
   showCards = false
   groupByYear = true
   cardView = false
