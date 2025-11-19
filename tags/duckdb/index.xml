@@ -1,9 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Duckdb on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/duckdb/</link><description>Recent content in Duckdb on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- 0.152.2</generator><language>en-us</language><lastBuildDate>Sat, 14 Jun 2025 23:51:42 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/duckdb/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a Pyspark Custom Data Sources for DuckDB</title><link>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</link><pubDate>Sat, 14 Jun 2025 23:51:42 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Duckdb on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/duckdb/</link><description>Recent content in Duckdb on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2025 Brock</copyright><lastBuildDate>Sat, 14 Jun 2025 23:51:42 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/duckdb/index.xml" rel="self" type="application/rss+xml"/><item><title>Building a Pyspark Custom Data Sources for DuckDB</title><link>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</link><pubDate>Sat, 14 Jun 2025 23:51:42 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#summary" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Apache Spark 4.0 and Databricks 15.2 supports custom Pyspark Data Sources&lt;/li&gt;
 &lt;li&gt;A custom data source allows you to connect to a source system that that Spark may not currently have support for&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="pyspark-custom-data-sources---an-overview"&gt;PySpark Custom Data Sources - an Overview&lt;/h2&gt;
-&lt;p&gt;Starting with &lt;a href="https://spark.apache.org/docs/latest/api/python/tutorial/sql/python_data_source.html"&gt;Apache Spark 4.0&lt;/a&gt; and &lt;a href="https://docs.databricks.com/aws/en/pyspark/datasources"&gt;Databricks 15.2&lt;/a&gt;, PySpark supports custom data sources.&lt;/p&gt;
-&lt;p&gt;So what &lt;em&gt;are&lt;/em&gt; PySpark Custom Data Sources?&lt;/p&gt;
-&lt;p&gt;Custom data sources allow you to define a source &lt;code&gt;format&lt;/code&gt; other than the default built-in formats such as csv, json, and parquet. There are many other supported formats such as Delta and Iceberg, but if there is no community or commercial support offered for the data source of interest, you can extend and inherit some builtin PySpark classes and roll your own. One common example of this may be calling a REST endpoint.&lt;/p&gt;</description></item></channel></rss>
+&lt;h2 class="relative group"&gt;PySpark Custom Data Sources - an Overview
+&lt;div id="pyspark-custom-data-sources---an-overview" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#pyspark-custom-data-sources---an-overview" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;Starting with &lt;a
+href="https://spark.apache.org/docs/latest/api/python/tutorial/sql/python_data_source.html"
+target="_blank"
+&gt;Apache Spark 4.0&lt;/a&gt; and &lt;a
+href="https://docs.databricks.com/aws/en/pyspark/datasources"
+target="_blank"
+&gt;Databricks 15.2&lt;/a&gt;, PySpark supports custom data sources.&lt;/p&gt;</description></item></channel></rss>

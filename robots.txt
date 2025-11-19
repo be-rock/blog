@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://be-rock.github.io/blog/sitemap.xml

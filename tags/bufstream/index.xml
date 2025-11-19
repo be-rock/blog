@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Bufstream on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/bufstream/</link><description>Recent content in Bufstream on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- 0.152.2</generator><language>en-us</language><lastBuildDate>Sat, 09 Aug 2025 22:29:16 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/bufstream/index.xml" rel="self" type="application/rss+xml"/><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bufstream on Brock's Blog on Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/bufstream/</link><description>Recent content in Bufstream on Brock's Blog on Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2025 Brock</copyright><lastBuildDate>Sat, 09 Aug 2025 22:29:16 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/bufstream/index.xml" rel="self" type="application/rss+xml"/><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#summary" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Bufstream is said to be a drop-in replacement for Kafka via a simple Go-based binary&lt;/li&gt;
 &lt;li&gt;Bufstream also standardizes on Protocol Buffers as the serialization format for messaging and integrates well with Lakehouses by writing directly to an Iceberg sink&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="what-is-the-point"&gt;What is the point?&lt;/h2&gt;
+&lt;h2 class="relative group"&gt;What is the point?
+&lt;div id="what-is-the-point" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-is-the-point" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;I often work with streaming and Kafka with Apache Spark. Setting up and managing a Kafka cluster can be cumbersome so having a quick, easy, standardized, and leightweight way to run Kafka is appealing.&lt;/li&gt;
 &lt;li&gt;This blog attempts to test the claims of Buf - the company behind:
