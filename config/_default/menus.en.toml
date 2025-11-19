@@ -1,0 +1,42 @@
+# -- Main Menu --
+# The main menu is displayed in the header at the top of the page.
+# Acceptable parameters are name, pageRef, page, url, title, weight.
+
+[[main]]
+  name = "Home"
+  pageRef = "/"
+  weight = 1
+
+[[main]]
+  name = "Posts"
+  pageRef = "posts"
+  weight = 2
+
+[[main]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 3
+
+# [[main]]
+#   name = "Search"
+#   pageRef = "search"
+#   weight = 4
+
+[[main]]
+  identifier = "github"
+  pre = "github"
+  url = "https://github.com/be-rock"
+  weight = 100
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 10
+
+[[footer]]
+  name = "Posts"
+  pageRef = "posts"
+  weight = 20

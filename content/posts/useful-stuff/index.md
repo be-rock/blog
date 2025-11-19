@@ -3,6 +3,7 @@ title: "Useful Stuff"
 date: 2025-11-15T22:36:28
 draft: false
 showToc: true
+summary: "Miscellaneous useful stuff that I pickup over time"
 tags:
   - useful
 ---
