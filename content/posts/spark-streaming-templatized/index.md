@@ -1,7 +1,7 @@
 ---
-title: "Spark Streaming Templatized"
-date: 2025-10-12T21:59:47-05:00
-draft: true
+title: "Apache Spark Streaming - templatized"
+date: 2025-10-12T20:21:51-05:00
+draft: false
 showToc: true
 tags:
   - spark
@@ -112,4 +112,13 @@ config: YamlConfigSettingsSource = YamlConfigSettingsSource(
     settings_cls=AppConfig,
     yaml_file="app-conf.yaml",
 )
+
+config.yaml_data
+{'source': {'format': 'rate', 'rowsPerSecond': 1},
+ 'trigger': {'processingTime': '1 seconds'},
+ 'target': {'checkpointLocation': '/tmp/checkpoint', 'format': 'noop'},
+ 'query_name': 'my-streaming-query'}
+
+app_config: AppConfig = AppConfig(**config.yaml_data)
+assert app_config.query_name == "my-streaming-query"
 ```

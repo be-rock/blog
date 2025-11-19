@@ -1,17 +1,16 @@
 languageCode = "en-us"
 languageName = "English"
 weight = 1
-title = "Brock's Blog on Data|DevOps|Cloud"
+title = "Brock's Blog - Data|DevOps|Cloud"
 
 [params]
   displayName = "English"
   isoCode = "en"
   rtl = false
   dateFormat = "2 January 2006"
-  description = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
 
 [params.author]
-  name = "Brock"
+  name = "Brock B"
   headline = "Brock's Blog Data|DevOps|Cloud"
   bio = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
   links = [
