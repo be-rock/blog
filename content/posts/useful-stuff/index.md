@@ -71,3 +71,9 @@ Here are a few interesting repos to assess:
 - https://codewiki.google/github.com/mlflow/mlflow
 - https://codewiki.google/github.com/run-llama/llama_index
 - https://codewiki.google/github.com/neondatabase/neon
+
+(`ai`, `codewiki`)
+
+4. A nice aggregate summary of best practices when working with Claude Code https://rosmur.github.io/claudecode-best-practices/
+
+(`ai`, `claudecode`)
