@@ -7,7 +7,8 @@ title = "Brock's Blog - Data|DevOps|Cloud"
   displayName = "English"
   isoCode = "en"
   rtl = false
-  dateFormat = "2 January 2006"
+#   dateFormat = "2 January 2006"
+  dateFormat = "2006-01-02"
 
 [params.author]
   name = "Brock B"
@@ -15,4 +16,5 @@ title = "Brock's Blog - Data|DevOps|Cloud"
   bio = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
   links = [
     { github = "https://github.com/be-rock" },
+    { rss = "/index.xml" },
   ]
