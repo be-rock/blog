@@ -1,0 +1,10 @@
+from pyspark import pipelines as dp
+
+# We can inject the catalog name directly into the code
+TARGET_CATALOG = "{{.catalog_name}}"
+
+@dp.table(
+    comment="Raw data landing in " + TARGET_CATALOG
+)
+def raw_users():
+    return spark.range(10)
