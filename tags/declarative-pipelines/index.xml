@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Declarative Pipelines on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/declarative-pipelines/</link><description>Recent content in Declarative Pipelines on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2025 Brock B</copyright><lastBuildDate>Sun, 23 Nov 2025 13:33:06 -0600</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/declarative-pipelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Declarative Pipelines via DAB</title><link>https://be-rock.github.io/blog/posts/databricks-declarative-pipelines-via-dab/</link><pubDate>Sun, 23 Nov 2025 13:33:06 -0600</pubDate><guid>https://be-rock.github.io/blog/posts/databricks-declarative-pipelines-via-dab/</guid><description>&lt;p&gt;This blog will provide an overview of how to use a DAB (Databricks Asset Bundle) template to provision a Declarative Pipeline.&lt;/p&gt;
+&lt;h2 class="relative group"&gt;Setup
+&lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;A DAB project can be established from a template to ensure consistencies among related projects. DAB templates follow a Go package template syntax, as described in the &lt;a
+href="https://docs.databricks.com/aws/en/dev-tools/bundles/template-tutorial"
+target="_blank"
+&gt;DAB Template Tutorial docs&lt;/a&gt;.&lt;/p&gt;</description></item></channel></rss>
