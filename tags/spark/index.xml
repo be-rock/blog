@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spark on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/spark/</link><description>Recent content in Spark on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2025 Brock B</copyright><lastBuildDate>Sun, 23 Nov 2025 13:33:06 -0600</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/spark/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Declarative Pipelines via DAB</title><link>https://be-rock.github.io/blog/posts/databricks-declarative-pipelines-via-dab/</link><pubDate>Sun, 23 Nov 2025 13:33:06 -0600</pubDate><guid>https://be-rock.github.io/blog/posts/databricks-declarative-pipelines-via-dab/</guid><description>&lt;p&gt;This blog will provide an overview of how to use a DAB (Databricks Asset Bundle) template to provision a Declarative Pipeline.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Spark on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/spark/</link><description>Recent content in Spark on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2025 Brock B</copyright><lastBuildDate>Sun, 23 Nov 2025 13:33:06 -0600</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/spark/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Declarative Pipelines via DAB</title><link>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</link><pubDate>Sun, 23 Nov 2025 13:33:06 -0600</pubDate><guid>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</guid><description>&lt;p&gt;This blog will provide an overview of how to use a DAB (Databricks Asset Bundle) template to provision a Declarative Pipeline.&lt;/p&gt;
 &lt;h2 class="relative group"&gt;Setup
 &lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
 &lt;span
@@ -9,7 +9,7 @@ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-
 &lt;p&gt;A DAB project can be established from a template to ensure consistencies among related projects. DAB templates follow a Go package template syntax, as described in the &lt;a
 href="https://docs.databricks.com/aws/en/dev-tools/bundles/template-tutorial"
 target="_blank"
-&gt;DAB Template Tutorial docs&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&gt;DAB Template Tutorial docs&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
@@ -22,7 +22,7 @@ target="_blank"
 &gt;Delta Lake&lt;/a&gt; provides support for CDC (Change Data Capture) through its internal &lt;a
 href="https://docs.delta.io/delta-change-data-feed/"
 target="_blank"
-&gt;Change Data Feed&lt;/a&gt; (CDF).&lt;/p&gt;</description></item><item><title>Using the StreamingQueryListener with Spark Streaming</title><link>https://be-rock.github.io/blog/posts/spark-streaming-streamingquerylistener/</link><pubDate>Mon, 13 Oct 2025 20:08:27 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/spark-streaming-streamingquerylistener/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&gt;Change Data Feed&lt;/a&gt; (CDF).&lt;/p&gt;</description></item><item><title>Using the StreamingQueryListener with Spark Streaming</title><link>https://be-rock.github.io/blog/posts/2025/spark-streaming-streamingquerylistener/</link><pubDate>Mon, 13 Oct 2025 20:08:27 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/spark-streaming-streamingquerylistener/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
@@ -32,14 +32,14 @@ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-
 &lt;p&gt;This is an example of how to setup a Spark &lt;a
 href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.ss/api/pyspark.sql.streaming.StreamingQueryListener.html"
 target="_blank"
-&gt;&lt;code&gt;StreamingQueryListener&lt;/code&gt;&lt;/a&gt; that writes to some sample targets such as &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;Postgres&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/spark-streaming-templatized/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/spark-streaming-templatized/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&gt;&lt;code&gt;StreamingQueryListener&lt;/code&gt;&lt;/a&gt; that writes to some sample targets such as &lt;code&gt;json&lt;/code&gt; and &lt;code&gt;Postgres&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>Apache Spark Streaming - templatized</title><link>https://be-rock.github.io/blog/posts/2025/spark-streaming-templatized/</link><pubDate>Sun, 12 Oct 2025 20:21:51 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/spark-streaming-templatized/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
 &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#summary" aria-label="Anchor"&gt;#&lt;/a&gt;
 &lt;/span&gt;
 &lt;/h2&gt;
-&lt;p&gt;This is a template / code snippet that can be useful to quickly setup a Spark Streaming Query with a source and sink. The template will not work in all circumstances, such as a &lt;code&gt;foreachBatch&lt;/code&gt; sink but is enough to get you started in a quick way, with some examples below on how this could be templatized even more using a markup language like &lt;code&gt;yaml&lt;/code&gt;, if so desired.&lt;/p&gt;</description></item><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&lt;p&gt;This is a template / code snippet that can be useful to quickly setup a Spark Streaming Query with a source and sink. The template will not work in all circumstances, such as a &lt;code&gt;foreachBatch&lt;/code&gt; sink but is enough to get you started in a quick way, with some examples below on how this could be templatized even more using a markup language like &lt;code&gt;yaml&lt;/code&gt;, if so desired.&lt;/p&gt;</description></item><item><title>Streaming with Bufstream, Protobuf, and Spark</title><link>https://be-rock.github.io/blog/posts/2025/kafka-protobuf-and-bufstream/</link><pubDate>Sat, 09 Aug 2025 22:29:16 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/kafka-protobuf-and-bufstream/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
@@ -67,7 +67,7 @@ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Note that the &lt;code&gt;buf&lt;/code&gt; CLI will be referenced in this blog, but less of a focus.&lt;/p&gt;</description></item><item><title>Using a Container to run PySpark Unit Tests</title><link>https://be-rock.github.io/blog/posts/pyspark-container-unit-tests/</link><pubDate>Sat, 12 Jul 2025 12:58:15 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-container-unit-tests/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&lt;p&gt;Note that the &lt;code&gt;buf&lt;/code&gt; CLI will be referenced in this blog, but less of a focus.&lt;/p&gt;</description></item><item><title>Using a Container to run PySpark Unit Tests</title><link>https://be-rock.github.io/blog/posts/2025/pyspark-container-unit-tests/</link><pubDate>Sat, 12 Jul 2025 12:58:15 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/pyspark-container-unit-tests/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
@@ -85,7 +85,7 @@ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-
 &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-just-why" aria-label="Anchor"&gt;#&lt;/a&gt;
 &lt;/span&gt;
 &lt;/h2&gt;
-&lt;p&gt;Hopefully you do not need to be convinced of the value of unit testing; there is really no shortage of content on this topic. If we can agree on that, what I have found in my day-to-day is that I am often in the Spark shell trying to evaluate functions, generate explain plans, and trying to confirm my understanding of internals.&lt;/p&gt;</description></item><item><title>Building a Pyspark Custom Data Sources for DuckDB</title><link>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</link><pubDate>Sat, 14 Jun 2025 23:51:42 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/pyspark-custom-datasource-duckdb/</guid><description>&lt;h2 class="relative group"&gt;Summary
+&lt;p&gt;Hopefully you do not need to be convinced of the value of unit testing; there is really no shortage of content on this topic. If we can agree on that, what I have found in my day-to-day is that I am often in the Spark shell trying to evaluate functions, generate explain plans, and trying to confirm my understanding of internals.&lt;/p&gt;</description></item><item><title>Building a Pyspark Custom Data Sources for DuckDB</title><link>https://be-rock.github.io/blog/posts/2025/pyspark-custom-datasource-duckdb/</link><pubDate>Sat, 14 Jun 2025 23:51:42 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/pyspark-custom-datasource-duckdb/</guid><description>&lt;h2 class="relative group"&gt;Summary
 &lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
 &lt;span
 class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
