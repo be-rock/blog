@@ -1,0 +1,22 @@
+{
+    "properties": {
+        "project_name": {
+            "type": "string",
+            "default": "dab_2025-11-23",
+            "description": "The name of the project folder and bundle",
+            "order": 1
+        },
+        "pipeline_name": {
+            "type": "string",
+            "default": "my_pipeline_2025-11-23",
+            "description": "The unique name of the DLT pipeline",
+            "order": 2
+        },
+        "catalog_name": {
+            "type": "string",
+            "default": "workspace",
+            "description": "Target Unity Catalog for data",
+            "order": 3
+        }
+    }
+}
