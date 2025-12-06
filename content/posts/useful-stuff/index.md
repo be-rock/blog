@@ -2,7 +2,6 @@
 title: "Useful Stuff"
 date: 2025-11-15T22:36:28
 draft: false
-showToc: true
 summary: "Miscellaneous useful stuff that I pickup over time"
 tags:
   - useful
@@ -14,7 +13,7 @@ This page intends to be a catch-all of useful stuff that I gather over time.
 
 ### 2025-11
 
-1. Provide a custom message for each commit to a Delta table (`#deltalake`)
+1. Provide a custom message for each commit to a Delta table
 
 ```python
 import datetime
@@ -45,8 +44,10 @@ from
   hist
 # {"name": "my-app", "event_timestamp": "2025-11-09..."}
 ```
+`#deltalake`
 
-2. Attach a sqlite database to the duckdb CLI. It's a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions (`#duckdb` `#sqlite`)
+2. Attach a sqlite database to the duckdb CLI. It's a quick way to do analysis on a sqlite database using the duckdb engine for snappier query executions
+
 ```shell
 duckdb
 D INSTALL sqlite;
@@ -57,6 +58,7 @@ D USE db;
 D.tables
 D select * from mytable;
 ```
+`#duckdb` `#sqlite`
 
 3. Google released Code Wiki which is described as:
 
@@ -71,3 +73,23 @@ Here are a few interesting repos to assess:
 - https://codewiki.google/github.com/mlflow/mlflow
 - https://codewiki.google/github.com/run-llama/llama_index
 - https://codewiki.google/github.com/neondatabase/neon
+
+`#ai` `#codewiki`
+
+4. A nice aggregate summary of best practices when working with Claude Code https://rosmur.github.io/claudecode-best-practices/
+
+`#ai` `#claudecode`
+
+5. A summary of what's described as the "dev docs" approach to managing Claude Code context. Persisting the data to a set of files in a feature-specific directory allows for the context to be preserved even after context resets.
+
+```text
+project/dev/active/[task-name]/
+├── [task-name]-plan.md      # Strategic plan
+├── [task-name]-context.md   # Key decisions & files
+└── [task-name]-tasks.md     # Checklist format
+```
+> Ref: https://github.com/diet103/claude-code-infrastructure-showcase/tree/main/dev#the-solution-persistent-dev-docs
+
+Details on when to use each of these as well as some examples are in the doc above
+
+`#ai` `#claudecode`
