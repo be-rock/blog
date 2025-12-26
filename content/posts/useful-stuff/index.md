@@ -93,3 +93,12 @@ project/dev/active/[task-name]/
 Details on when to use each of these as well as some examples are in the doc above
 
 `#ai` `#claudecode`
+
+### 2025-12
+
+1. `mitmproxy` is an interactive CLI tool that functions as a network proxy to simplify the inspection and debugging of web apps. The tool can be installed with `brew install mitmproxy` and then invoked like:
+
+- `mitmproxy --mode reverse:https://your-web-app.com`
+    - If you then opened http://localhost:8080 or interacted with the localhost URL programatically, the HTTP calls could be followed and monitored in your terminal
+
+`#network`
