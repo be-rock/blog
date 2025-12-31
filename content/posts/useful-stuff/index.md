@@ -1,8 +1,8 @@
 ---
 title: "Useful Stuff"
-date: 2025-11-15T22:36:28
+date: 2025-12-30T12:20:35
 draft: false
-summary: "Miscellaneous useful stuff that I pickup over time"
+summary: "Miscellaneous useful stuff that I pick up over time"
 tags:
   - useful
 ---
@@ -92,7 +92,7 @@ project/dev/active/[task-name]/
 
 Details on when to use each of these as well as some examples are in the doc above
 
-`#ai` `#claudecode`
+`#ai` `#claudecode` `#spec-driven-development`
 
 ### 2025-12
 
@@ -102,3 +102,60 @@ Details on when to use each of these as well as some examples are in the doc abo
     - If you then opened http://localhost:8080 or interacted with the localhost URL programatically, the HTTP calls could be followed and monitored in your terminal
 
 `#network`
+
+2. Use GitHub's [spec-kit](https://github.com/github/spec-kit.git) to use spec-driven development for starting and managing an AI-driven project. This is similar in concept to the 'dev-docs' approach referenced above.
+
+- install the `specify` CLI
+    - `uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git`
+- initialize a new project
+    - `specify init <PROJECT_NAME> --ai claude`
+
+Sequentially, the approach to take for project features is:
+
+```text
+/speckit.constitution
+     /speckit.specify
+        /speckit.clarify (optional but recommended)
+            /speckit.plan
+                /speckit.tasks
+                     /speckit.implement
+```
+
+The `constitution` is described as: "Create or update project governing principles and development guidelines" so would be done once at the project level and then the introduction of new features (say new-feature-1 and new-feature-2) would result in the `specify` through `implement` workflow to be repeated twice, one for each different feature.
+
+`specify` will create a new feature branch and directory for each corresponding new feature. So the introduction of `new-feature-1` would look like:
+
+```text
+.
+├── hello-world
+├── index.html
+├── README.md
+└── specs
+    └── 001-new-feature-1
+        ├── checklists
+        │   └── requirements.md
+        ├── contracts
+        │   └── README.md
+        ├── data-model.md
+        ├── plan.md
+        ├── quickstart.md
+        ├── research.md
+        ├── spec.md
+        └── tasks.md
+```
+
+Context can be `/clear`'d after each feature is implemented and should not be performed during the `specify` feature session. `new-feature-2` would then reside under `002-new-feature-2` after running `/speckit.specify`
+
+```text
+.
+├── hello-world
+├── index.html
+├── README.md
+└── specs
+    ├── 001-hello-world-page
+    │   ├── ...
+    └── 002-visitor-counter
+        ├── ...
+```
+
+`#ai` `#claudecode` `#spec-driven-development`
