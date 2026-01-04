@@ -1,7 +1,7 @@
 ---
 title: "Databricks Vector Search"
 date: 2026-01-03T19:59:57
-draft: true
+draft: false
 tags:
   - ai
   - databricks
