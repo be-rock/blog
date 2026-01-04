@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 help: ## Show this help message.
-	@echo -e 'Usage: make [target] ...\n'
+	@echo "Usage: make [target] ...\\n"
 	@echo 'targets:'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
 
@@ -23,7 +23,7 @@ new-post: ## make a new post named "post-title" such as `make new-post title="po
 	@echo "Creating a new git branch called $(title)"
 	git switch -c $(title)
 	@echo "Creating a new post page bundle with title: $(title) ..."
-	hugo new posts/$(title)/index.md
+	hugo new posts/$$(date +%Y)/$(title)/index.md
 
 .PHONY: serve
 serve: ## serve the site locally, including content marked as draft
