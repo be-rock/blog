@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vector Search on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/vector-search/</link><description>Recent content in Vector Search on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2026 Brock B</copyright><lastBuildDate>Sat, 03 Jan 2026 19:59:57 +0000</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/vector-search/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Vector Search</title><link>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</link><pubDate>Sat, 03 Jan 2026 19:59:57 +0000</pubDate><guid>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</guid><description>&lt;p&gt;This is a summary of vector search and how to leverage Databricks Mosaic AI Vector Search&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 class="relative group"&gt;Vector Search
+&lt;div id="vector-search" class="anchor"&gt;&lt;/div&gt;
+&lt;span
+class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#vector-search" aria-label="Anchor"&gt;#&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;
+&lt;p&gt;According to the Databricks docs on Vector Search&lt;/p&gt;</description></item></channel></rss>
