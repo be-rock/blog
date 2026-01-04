@@ -30,6 +30,8 @@ Vector databases are often used in RAG (Retrieval Augmened Generation) architect
 >
 > create an excalidram diagram of a typical RAG application architecture using a vector store. It should show 1) a flow both from a user perspective during inference to retrieve the similarity search results and 2) a flow of how the index is maintained via corpus ingest and embedding creation
 
+---
+
 ## How to calculate embeddings in Databricks
 
 There are 2 primary ways to calculate embeddings
@@ -52,6 +54,8 @@ There are two variations of this approach, dependent on whether you bring your o
 With this approach, there is no sync process and changes to the index need to manually maintained:
 
 - `REST API to manage the index --> Vector Index`
+
+---
 
 ## Deploy a Vector Search Index
 
@@ -112,6 +116,8 @@ Then write the dataset in entirety to the `movies` table.
 ```python
 prepared_df.write.mode("overwrite").saveAsTable("workspace.default.movies")
 ```
+
+---
 
 ### Create the Endpoint
 
@@ -234,6 +240,8 @@ for doc in results["result"]["data_array"]:
 ['All You Can Dream', '8.8', '2012', 'Comedy, Drama, Family', 0.43347055]
 ```
 
+---
+
 ## Get embedding values with the MLflow deploy client
 
 ```python
@@ -248,6 +256,8 @@ embeddings = deploy_client.predict(
 print(embeddings)
 {'id': '7206f91d-7670-4afc-ab59-8e49e921ddc3', 'object': 'list', 'model': 'bge-large-en-v1.5', 'data': [{'index': 0, 'object': 'embedding', 'embedding': [0.060791015625, 0.007152557373046875, 0.003086090087890625, -3.457069396972656e-05, -0.053131103515625, -0.0169219970703125, -0.01088714599609375, 0.00502777099609375, -0.0285491943359375, -0.01009368896484375, 0.0191802978515625, 0.033660888671875, -0.0273590087890625, ...
 ```
+
+---
 
 ## Search with Langchain
 
@@ -295,6 +305,8 @@ response = chat_model.invoke("provide a list of low-rated movies, responses must
 print(response.content[:200])
 '[{"type": "reasoning", "summary": [{"type": "summary_text", "text": "The user wants a list of low-rated movies, responses must be in JSON format. We need to provide a list. We should consider what qua...'
 ```
+
+---
 
 ## Summary
 
