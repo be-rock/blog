@@ -1,34 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Databricks on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/databricks/</link><description>Recent content in Databricks on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>© 2026 Brock B</copyright><lastBuildDate>Sat, 03 Jan 2026 19:59:57 +0000</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/databricks/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Vector Search</title><link>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</link><pubDate>Sat, 03 Jan 2026 19:59:57 +0000</pubDate><guid>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</guid><description>&lt;p&gt;This is a summary of vector search and how to leverage Databricks Mosaic AI Vector Search&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Databricks on Brock's Blog - Data|DevOps|Cloud</title><link>https://be-rock.github.io/blog/tags/databricks/</link><description>Recent content in Databricks on Brock's Blog - Data|DevOps|Cloud</description><generator>Hugo -- 0.157.0</generator><language>en-us</language><lastBuildDate>Sun, 08 Mar 2026 13:37:26 -0500</lastBuildDate><atom:link href="https://be-rock.github.io/blog/tags/databricks/index.xml" rel="self" type="application/rss+xml"/><item><title>Databricks Vector Search</title><link>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</link><pubDate>Sat, 03 Jan 2026 19:59:57 +0000</pubDate><guid>https://be-rock.github.io/blog/posts/2026/databricks-vector-search/</guid><description>&lt;p&gt;This is a summary of vector search and how to leverage Databricks Mosaic AI Vector Search&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 class="relative group"&gt;Vector Search
-&lt;div id="vector-search" class="anchor"&gt;&lt;/div&gt;
-&lt;span
-class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
-&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#vector-search" aria-label="Anchor"&gt;#&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;
-&lt;p&gt;According to the Databricks docs on Vector Search&lt;/p&gt;</description></item><item><title>Databricks Declarative Pipelines via DAB</title><link>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</link><pubDate>Sun, 23 Nov 2025 13:33:06 -0600</pubDate><guid>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</guid><description>&lt;p&gt;This blog will provide an overview of how to use a DAB (Databricks Asset Bundle) template to provision a Declarative Pipeline.&lt;/p&gt;
-&lt;h2 class="relative group"&gt;Setup
-&lt;div id="setup" class="anchor"&gt;&lt;/div&gt;
-&lt;span
-class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
-&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#setup" aria-label="Anchor"&gt;#&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;
-&lt;p&gt;A DAB project can be established from a template to ensure consistencies among related projects. DAB templates follow a Go package template syntax, as described in the &lt;a
-href="https://docs.databricks.com/aws/en/dev-tools/bundles/template-tutorial"
-target="_blank"
-&gt;DAB Template Tutorial docs&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 class="relative group"&gt;Summary
-&lt;div id="summary" class="anchor"&gt;&lt;/div&gt;
-&lt;span
-class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
-&lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#summary" aria-label="Anchor"&gt;#&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;
-&lt;p&gt;&lt;a
-href="https://delta.io/"
-target="_blank"
-&gt;Delta Lake&lt;/a&gt; provides support for CDC (Change Data Capture) through its internal &lt;a
-href="https://docs.delta.io/delta-change-data-feed/"
-target="_blank"
-&gt;Change Data Feed&lt;/a&gt; (CDF).&lt;/p&gt;</description></item></channel></rss>
+&lt;h2 id="vector-search"&gt;Vector Search&lt;/h2&gt;
+&lt;p&gt;According to the Databricks docs on Vector Search&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vector search is a type of search optimized for retrieving embeddings. Embeddings are mathematical representations of the semantic content of data, typically text or image data. Embeddings are generated by a large language model and are a key component of many generative AI applications that depend on finding documents or images that are similar to each other. Examples are RAG systems, recommender systems, and image and video recognition.&lt;/p&gt;</description></item><item><title>Databricks Declarative Pipelines via DAB</title><link>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</link><pubDate>Sun, 23 Nov 2025 13:33:06 -0600</pubDate><guid>https://be-rock.github.io/blog/posts/2025/databricks-declarative-pipelines-via-dab/</guid><description>&lt;p&gt;This blog will provide an overview of how to use a DAB (Databricks Asset Bundle) template to provision a Declarative Pipeline.&lt;/p&gt;
+&lt;h2 id="setup"&gt;Setup&lt;/h2&gt;
+&lt;p&gt;A DAB project can be established from a template to ensure consistencies among related projects. DAB templates follow a Go package template syntax, as described in the &lt;a href="https://docs.databricks.com/aws/en/dev-tools/bundles/template-tutorial"&gt;DAB Template Tutorial docs&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Change Data Capture via Spark Streaming and Delta Lake CDF</title><link>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</link><pubDate>Mon, 27 Oct 2025 10:55:10 -0500</pubDate><guid>https://be-rock.github.io/blog/posts/2025/spark-streaming-delta-lake-cdf/</guid><description>&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://delta.io/"&gt;Delta Lake&lt;/a&gt; provides support for CDC (Change Data Capture) through its internal &lt;a href="https://docs.delta.io/delta-change-data-feed/"&gt;Change Data Feed&lt;/a&gt; (CDF).&lt;/p&gt;
+&lt;p&gt;The docs describe this feature as:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Change Data Feed (CDF) feature allows Delta tables to track row-level changes between versions of a Delta table. When enabled on a Delta table, the runtime records “change events” for all the data written into the table. This includes the row data along with metadata indicating whether the specified row was inserted, deleted, or updated.&lt;/p&gt;</description></item></channel></rss>
