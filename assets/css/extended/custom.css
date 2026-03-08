@@ -108,8 +108,7 @@
   transition: color 0.2s ease;
 }
 
-/* Use :has() to detect hover on the overlay link that covers the card */
-.post-entry:has(.entry-link:hover) .entry-header h2 {
+.post-entry:hover .entry-header h2 {
   color: var(--accent);
 }
 

@@ -40,7 +40,6 @@
       <span>{{ .Date.Format ($.Site.Params.dateFormat | default "2006-01-02") }}</span>
       {{- if $.Site.Params.ShowReadingTime }}&nbsp;·&nbsp;{{ .ReadingTime }} min{{ end }}
     </footer>
-    <a class="entry-link" aria-label="post link to {{ .Title }}" href="{{ .Permalink }}"></a>
   </article>
   {{- end }}
   {{- if gt $paginator.TotalPages 1 }}
