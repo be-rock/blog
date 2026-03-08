@@ -170,9 +170,9 @@
 
 /* ── Table of Contents (right sidebar) ── */
 
-/* Widen the main container on posts with a TOC */
-.post-single.has-toc {
-  max-width: calc(var(--main-width) + 280px);
+/* Widen the page for posts with a sidebar TOC */
+.main:has(.has-toc) {
+  max-width: 1200px;
 }
 
 /* Flex container for content + sidebar */
