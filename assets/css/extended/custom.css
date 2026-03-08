@@ -168,11 +168,101 @@
   background: linear-gradient(90deg, var(--accent-dim), var(--border), var(--accent-dim));
 }
 
-/* ── Table of Contents ── */
+/* ── Table of Contents (right sidebar) ── */
 
-.toc a:hover {
+/* Widen the main container on posts with a TOC */
+.post-single.has-toc {
+  max-width: calc(var(--main-width) + 280px);
+}
+
+/* Flex container for content + sidebar */
+.post-body {
+  display: flex;
+  gap: 2rem;
+}
+
+.post-body .post-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Sidebar TOC */
+.toc-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.toc-nav {
+  position: sticky;
+  top: calc(var(--header-height) + var(--gap));
+  max-height: calc(100vh - var(--header-height) - 3rem);
+  overflow-y: auto;
+}
+
+.toc-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin: 0 0 0.75rem 0;
+}
+
+.toc-inner nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.toc-inner nav > ul ul {
+  list-style: none;
+  padding-inline-start: 0.85rem;
+}
+
+.toc-inner li {
+  margin-bottom: 0.35rem;
+}
+
+.toc-inner a {
+  color: var(--secondary);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.toc-inner a:hover {
   color: var(--accent);
-  box-shadow: 0 1px 0 var(--accent);
+}
+
+/* Hide the old collapsible TOC (in case it leaks through) */
+.post-single .toc {
+  display: none;
+}
+
+/* Responsive: stack TOC above content on narrow screens */
+@media (max-width: 960px) {
+  .post-single.has-toc {
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+  }
+
+  .post-body {
+    flex-direction: column;
+  }
+
+  .toc-sidebar {
+    width: 100%;
+    order: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-nav {
+    position: static;
+    max-height: none;
+  }
 }
 
 /* ── Tags ── */
