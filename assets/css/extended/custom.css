@@ -144,3 +144,76 @@
 .pagination a:hover {
   color: var(--accent);
 }
+
+/* ── Post content (individual posts) ── */
+
+/* In-text links */
+.post-content a {
+  color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent-dim);
+  transition: box-shadow 0.2s ease;
+}
+
+.post-content a:hover {
+  box-shadow: 0 1px 0 var(--accent);
+}
+
+/* Blockquote accent bar */
+.post-content blockquote {
+  border-inline-start: 3px solid var(--accent);
+}
+
+/* Horizontal rules */
+.post-content hr {
+  background: linear-gradient(90deg, var(--accent-dim), var(--border), var(--accent-dim));
+}
+
+/* ── Table of Contents ── */
+
+.toc a:hover {
+  color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent);
+}
+
+/* ── Tags ── */
+
+.post-tags a:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.terms-tags a:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ── Nav ── */
+
+#menu .active {
+  border-bottom-color: var(--accent);
+}
+
+#menu a:hover {
+  color: var(--accent);
+}
+
+/* ── Post nav (prev/next) ── */
+
+.paginav a:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+/* ── Footer ── */
+
+.footer a:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Back to top button ── */
+
+.top-link:hover {
+  color: var(--accent);
+}
