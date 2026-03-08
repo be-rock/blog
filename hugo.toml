@@ -40,6 +40,13 @@ summaryLength = 30
   dateFormat = "2006-01-02"
   mainSections = ["posts"]
 
+  [params.assets]
+    disableFingerprinting = false
+    favicon = "data:,"
+    favicon16x16 = "data:,"
+    favicon32x32 = "data:,"
+    apple_touch_icon = "data:,"
+
   [params.profileMode]
     enabled = true
     title = "Brock B"
