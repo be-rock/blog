@@ -41,11 +41,10 @@ summaryLength = 30
   mainSections = ["posts"]
 
   [params.assets]
-    disableFingerprinting = false
-    favicon = "data:,"
-    favicon16x16 = "data:,"
-    favicon32x32 = "data:,"
-    apple_touch_icon = "data:,"
+    favicon = "/favicon.svg"
+    favicon16x16 = "/favicon.svg"
+    favicon32x32 = "/favicon.svg"
+    apple_touch_icon = "/favicon.svg"
 
   [params.profileMode]
     enabled = true
