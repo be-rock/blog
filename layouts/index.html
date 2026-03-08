@@ -1,0 +1,59 @@
+{{- define "main" }}
+
+{{- if .Site.Params.profileMode.enabled }}
+<div class="profile">
+  {{- with .Site.Params.profileMode }}
+  <div class="profile_inner">
+    {{- if .imageUrl }}
+    <img draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}"
+      height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+    {{- end }}
+    <h1>{{ .title | default site.Title | markdownify }}</h1>
+    <span>{{ .subtitle | markdownify }}</span>
+    {{- partial "social_icons.html" -}}
+    {{- with .buttons }}
+    <div class="buttons">
+      {{- range . }}
+      <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+        <span class="button-inner">{{ .name }}</span>
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}
+
+<div class="recent-posts">
+  <h2 class="recent-posts-title">Recent Posts</h2>
+  {{- $pages := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
+  {{- $paginator := .Paginate $pages }}
+  {{- range $paginator.Pages }}
+  <article class="post-entry">
+    <header class="entry-header">
+      <h2>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </h2>
+    </header>
+    <footer class="entry-footer">
+      <span>{{ .Date.Format ($.Site.Params.dateFormat | default "2006-01-02") }}</span>
+      {{- if $.Site.Params.ShowReadingTime }}&nbsp;·&nbsp;{{ .ReadingTime }} min{{ end }}
+    </footer>
+  </article>
+  {{- end }}
+  {{- if gt $paginator.TotalPages 1 }}
+  <footer class="page-footer">
+    <nav class="pagination">
+      {{- if $paginator.HasPrev }}
+      <a class="prev" href="{{ $paginator.Prev.URL }}">« Prev</a>
+      {{- end }}
+      {{- if $paginator.HasNext }}
+      <a class="next" href="{{ $paginator.Next.URL }}">Next »</a>
+      {{- end }}
+    </nav>
+  </footer>
+  {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}

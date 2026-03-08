@@ -1,0 +1,88 @@
+baseURL = "https://be-rock.github.io/blog/"
+languageCode = "en-us"
+title = "Brock's Blog - Data|DevOps|Cloud"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+enableEmoji = true
+enableGitInfo = true
+summaryLength = 30
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 5
+  ordered = false
+
+[params]
+  defaultTheme = "dark"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = false
+  ShowToc = true
+  UseHugoToc = true
+  TocOpen = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  ShowShareButtons = false
+  dateFormat = "2006-01-02"
+  mainSections = ["posts"]
+
+  [params.assets]
+    favicon = "/favicon.svg"
+    favicon16x16 = "/favicon.svg"
+    favicon32x32 = "/favicon.svg"
+    apple_touch_icon = "/favicon.svg"
+
+  [params.profileMode]
+    enabled = true
+    title = "Brock B"
+    subtitle = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
+
+    [[params.profileMode.buttons]]
+      name = "Posts"
+      url = "/blog/posts/"
+
+    [[params.profileMode.buttons]]
+      name = "Tags"
+      url = "/blog/tags/"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/be-rock"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/blog/index.xml"
+
+[[menus.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menus.main]]
+  name = "Posts"
+  url = "/posts/"
+  weight = 2
+
+[[menus.main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 3
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5

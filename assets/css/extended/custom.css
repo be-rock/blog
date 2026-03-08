@@ -1,0 +1,355 @@
+/* ── Accent color ── */
+
+:root[data-theme="dark"] {
+  --accent: rgb(100, 180, 220);
+  --accent-dim: rgba(100, 180, 220, 0.15);
+}
+
+:root {
+  --accent: rgb(40, 120, 170);
+  --accent-dim: rgba(40, 120, 170, 0.1);
+}
+
+/* ── Profile section ── */
+
+/* Don't take full viewport — compact intro, not a landing page */
+.main .profile {
+  min-height: unset;
+  padding: 4rem 0 2rem;
+}
+
+.profile .profile_inner h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.profile .profile_inner > span {
+  font-size: 1.05rem;
+  color: var(--secondary);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* Accent divider between profile and posts */
+.profile + .recent-posts::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0 auto 2.5rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* ── Buttons ── */
+
+.button {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 8px 4px;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  background: var(--accent);
+  color: var(--theme);
+  box-shadow: 0 2px 12px var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+/* ── Social icons ── */
+
+.social-icons a {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-2px);
+  color: var(--accent);
+}
+
+/* ── Recent Posts heading ── */
+
+.recent-posts-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Post entries ── */
+
+.post-entry {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: var(--gap) 0;
+  margin-bottom: 0;
+  transition: none;
+}
+
+.post-entry:last-of-type {
+  border-bottom: none;
+}
+
+.post-entry:active {
+  transform: none;
+}
+
+.entry-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.entry-header h2 a {
+  color: var(--primary);
+  transition: color 0.2s ease;
+}
+
+.post-entry:hover .entry-header h2 a {
+  color: var(--accent);
+}
+
+.entry-footer {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  opacity: 0.7;
+}
+
+/* ── Pagination ── */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.pagination a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.pagination a:hover {
+  color: var(--accent);
+}
+
+/* ── Accent bar (reusable gradient) ── */
+
+/* Under post title on single posts */
+.post-header::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: 1.25rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* Above the footer */
+.footer::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* Above post tags */
+.post-footer::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin-bottom: 1.25rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* Above the TOC sidebar title */
+.toc-title::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin-bottom: 0.6rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+
+/* ── Post content (individual posts) ── */
+
+/* In-text links */
+.post-content a {
+  color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent-dim);
+  transition: box-shadow 0.2s ease;
+}
+
+.post-content a:hover {
+  box-shadow: 0 1px 0 var(--accent);
+}
+
+/* Blockquote accent bar */
+.post-content blockquote {
+  border-inline-start: 3px solid var(--accent);
+}
+
+/* Horizontal rules */
+.post-content hr {
+  background: linear-gradient(90deg, var(--accent-dim), var(--border), var(--accent-dim));
+}
+
+/* ── Table of Contents (right sidebar) ── */
+
+/* Widen the page for posts with a sidebar TOC */
+.main:has(.has-toc) {
+  max-width: 1200px;
+}
+
+/* Flex container for content + sidebar */
+.post-body {
+  display: flex;
+  gap: 2rem;
+}
+
+.post-body .post-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Sidebar TOC */
+.toc-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.toc-nav {
+  position: sticky;
+  top: calc(var(--header-height) + var(--gap));
+  max-height: calc(100vh - var(--header-height) - 3rem);
+  overflow-y: auto;
+}
+
+.toc-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin: 0 0 0.75rem 0;
+}
+
+.toc-inner nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.toc-inner nav > ul ul {
+  list-style: none;
+  padding-inline-start: 0.85rem;
+}
+
+.toc-inner li {
+  margin-bottom: 0.35rem;
+}
+
+.toc-inner a {
+  color: var(--secondary);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.toc-inner a:hover {
+  color: var(--accent);
+}
+
+/* Hide the old collapsible TOC (in case it leaks through) */
+.post-single .toc {
+  display: none;
+}
+
+/* Responsive: stack TOC above content on narrow screens */
+@media (max-width: 960px) {
+  .post-single.has-toc {
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+  }
+
+  .post-body {
+    flex-direction: column;
+  }
+
+  .toc-sidebar {
+    width: 100%;
+    order: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-nav {
+    position: static;
+    max-height: none;
+  }
+}
+
+/* ── Tags ── */
+
+.post-tags a:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.terms-tags a:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ── Nav ── */
+
+#menu .active {
+  border-bottom-color: var(--accent);
+}
+
+#menu a:hover {
+  color: var(--accent);
+}
+
+/* ── Post nav (prev/next) ── */
+
+.paginav a:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+/* ── Footer ── */
+
+.footer a:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Back to top button ── */
+
+.top-link:hover {
+  color: var(--accent);
+}
