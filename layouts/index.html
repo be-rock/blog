@@ -2,23 +2,26 @@
 
 {{- if .Site.Params.profileMode.enabled }}
 <div class="profile">
-  {{- with .Site.Params.profileMode.imageUrl }}
+  {{- with .Site.Params.profileMode }}
   <div class="profile_inner">
-    <img draggable="false" src="{{ . }}" alt="{{ $.Site.Params.profileMode.imageTitle | default "profile image" }}" />
-  </div>
-  {{- end }}
-  <h1>{{ .Site.Params.profileMode.title | default .Site.Title | markdownify }}</h1>
-  <span>{{ .Site.Params.profileMode.subtitle | markdownify }}</span>
-  {{- with .Site.Params.profileMode.buttons }}
-  <div class="buttons">
-    {{- range . }}
-    <a class="button" href="{{ .url }}" rel="noopener" title="{{ .name }}">
-      <span class="button-inner">{{ .name }}</span>
-    </a>
+    {{- if .imageUrl }}
+    <img draggable="false" src="{{ .imageUrl | absURL }}" alt="{{ .imageTitle | default "profile image" }}"
+      height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
+    {{- end }}
+    <h1>{{ .title | default site.Title | markdownify }}</h1>
+    <span>{{ .subtitle | markdownify }}</span>
+    {{- partial "social_icons.html" -}}
+    {{- with .buttons }}
+    <div class="buttons">
+      {{- range . }}
+      <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+        <span class="button-inner">{{ .name }}</span>
+      </a>
+      {{- end }}
+    </div>
     {{- end }}
   </div>
   {{- end }}
-  {{- partial "social_icons.html" site.Params.profileMode -}}
 </div>
 {{- end }}
 
