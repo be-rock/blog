@@ -1,0 +1,130 @@
+/* ── Profile section ── */
+
+/* Don't take full viewport — compact intro, not a landing page */
+.main .profile {
+  min-height: unset;
+  padding: 4rem 0 2rem;
+}
+
+.profile .profile_inner h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.profile .profile_inner > span {
+  font-size: 1.05rem;
+  color: var(--secondary);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* Accent divider between profile and posts */
+.profile + .recent-posts::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0 auto 2.5rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+}
+
+/* ── Buttons ── */
+
+.button {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 8px 4px;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  background: var(--secondary);
+  color: var(--theme);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ── Social icons ── */
+
+.social-icons a {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+/* ── Recent Posts heading ── */
+
+.recent-posts-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Post entries ── */
+
+.post-entry {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: var(--gap) 0;
+  margin-bottom: 0;
+  transition: none;
+}
+
+.post-entry:last-of-type {
+  border-bottom: none;
+}
+
+.post-entry:active {
+  transform: none;
+}
+
+.entry-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.post-entry:hover .entry-header h2 {
+  color: var(--secondary);
+}
+
+.entry-footer {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: var(--secondary);
+  opacity: 0.7;
+}
+
+/* ── Pagination ── */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.pagination a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.pagination a:hover {
+  color: var(--secondary);
+}
