@@ -170,8 +170,8 @@
 
 /* ── Table of Contents (right sidebar) ── */
 
-/* Widen the page layout */
-.main {
+/* Widen the page for posts with a sidebar TOC */
+.main:has(.has-toc) {
   max-width: 1200px;
 }
 
