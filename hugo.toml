@@ -39,6 +39,8 @@ summaryLength = 30
   ShowShareButtons = false
   dateFormat = "2006-01-02"
   mainSections = ["posts"]
+  [params.author]
+    name = "Brock B"
 
   [params.assets]
     favicon = "/favicon.svg"
