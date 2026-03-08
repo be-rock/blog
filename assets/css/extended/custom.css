@@ -1,3 +1,15 @@
+/* ── Accent color ── */
+
+:root[data-theme="dark"] {
+  --accent: rgb(100, 180, 220);
+  --accent-dim: rgba(100, 180, 220, 0.15);
+}
+
+:root {
+  --accent: rgb(40, 120, 170);
+  --accent-dim: rgba(40, 120, 170, 0.1);
+}
+
 /* ── Profile section ── */
 
 /* Don't take full viewport — compact intro, not a landing page */
@@ -27,7 +39,7 @@
   height: 3px;
   margin: 0 auto 2.5rem;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--tertiary), var(--secondary));
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
 }
 
 /* ── Buttons ── */
@@ -41,9 +53,9 @@
 }
 
 .button:hover {
-  background: var(--secondary);
+  background: var(--accent);
   color: var(--theme);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 12px var(--accent-dim);
   transform: translateY(-1px);
 }
 
@@ -55,7 +67,7 @@
 
 .social-icons a:hover {
   transform: translateY(-2px);
-  opacity: 0.8;
+  color: var(--accent);
 }
 
 /* ── Recent Posts heading ── */
@@ -97,7 +109,7 @@
 }
 
 .post-entry:hover .entry-header h2 {
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .entry-footer {
@@ -126,5 +138,5 @@
 }
 
 .pagination a:hover {
-  color: var(--secondary);
+  color: var(--accent);
 }
