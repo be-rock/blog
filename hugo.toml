@@ -43,10 +43,10 @@ summaryLength = 30
     name = "Brock B"
 
   [params.assets]
-    favicon = "/favicon.svg"
-    favicon16x16 = "/favicon.svg"
-    favicon32x32 = "/favicon.svg"
-    apple_touch_icon = "/favicon.svg"
+    favicon = "/blog/favicon.svg"
+    favicon16x16 = "/blog/favicon-16x16.png"
+    favicon32x32 = "/blog/favicon-32x32.png"
+    apple_touch_icon = "/blog/apple-touch-icon.png"
 
   [params.profileMode]
     enabled = true
