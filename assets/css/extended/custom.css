@@ -495,6 +495,49 @@ code, pre, kbd, tt, .chroma {
   color: var(--accent);
 }
 
+/* ── Direction 4 · ⌘K search pill ── */
+
+.search-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px 5px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--secondary);
+  background: var(--code-bg);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.search-pill:hover {
+  border-color: var(--accent);
+  color: var(--primary);
+  background: var(--accent-dim);
+}
+
+.search-pill svg {
+  flex-shrink: 0;
+}
+
+.search-pill kbd {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--secondary);
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 6px;
+}
+
+/* Hide the keyboard hint on narrow screens */
+@media (max-width: 640px) {
+  .search-pill kbd {
+    display: none;
+  }
+}
+
 /* ── Direction 4 · Micro-interactions ── */
 
 html {

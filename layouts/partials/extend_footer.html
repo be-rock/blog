@@ -23,6 +23,13 @@
         }
     }
 
+    // Show the right hint in the nav search pill (⌘K on mac, Ctrl K elsewhere)
+    if (!/Mac|iPhone|iPad/.test(navigator.platform)) {
+        document.querySelectorAll(".search-pill kbd").forEach(function (k) {
+            k.textContent = "Ctrl K";
+        });
+    }
+
     document.addEventListener("keydown", function (e) {
         // Cmd+K (mac) / Ctrl+K (others)
         if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
