@@ -3,9 +3,9 @@ title: "Sync Data With Lakebase Postgres"
 date: 2026-06-03T11:12:06-05:00
 draft: false
 tags:
-  - Databricks
-  - Lakebase
-  - Postgres
+  - databricks
+  - lakebase
+  - postgres
 ---
 
 An overview of how to get data into and out of Lakebase Postgres
@@ -220,6 +220,3 @@ CREATE FOREIGN CATALOG [IF NOT EXISTS] <catalog-name>
 USING CONNECTION <connection-name>
 OPTIONS (database '<database-name>');
 ```
-
----
-

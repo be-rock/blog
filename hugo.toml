@@ -25,6 +25,12 @@ summaryLength = 30
   endLevel = 5
   ordered = false
 
+[markup.highlight]
+  noClasses = false
+  codeFences = true
+  guessSyntax = true
+  tabWidth = 2
+
 [params]
   defaultTheme = "dark"
   disableThemeToggle = false
@@ -37,9 +43,13 @@ summaryLength = 30
   ShowWordCount = true
   ShowRssButtonInSectionTermList = true
   ShowShareButtons = false
+  ShowCodeCopyButtons = true
   dateFormat = "2006-01-02"
   mainSections = ["posts"]
   author = "Brock B"
+
+  [params.label]
+    text = "Brock's Blog"
 
   [params.assets]
     favicon = "/blog/favicon.svg"

@@ -87,8 +87,17 @@
             {{- $page_url:= $currentPage.Permalink | absLangURL }}
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
             <li>
-                <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
+                {{- if $is_search }}
+                <a href="{{ .URL | relLangURL }}" class="search-pill" accesskey="/" title="Search (⌘K or /)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="15" width="15">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>{{ .Name }}</span>
+                    <kbd>⌘K</kbd>
+                </a>
+                {{- else }}
+                <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }}">
                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
                         {{- .Pre }}
                         {{- .Name -}}
@@ -103,6 +112,7 @@
                     </svg>
                     {{- end }}
                 </a>
+                {{- end }}
             </li>
             {{- end }}
         </ul>
