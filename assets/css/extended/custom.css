@@ -151,7 +151,7 @@
 .post-header::after {
   content: "";
   display: block;
-  width: 60px;
+  width: 120px;
   height: 3px;
   margin-top: 1.25rem;
   border-radius: 2px;
@@ -424,7 +424,7 @@ code, pre, kbd, tt, .chroma {
   padding: 1.1rem 1.15rem;
   border-radius: 0;
   background: transparent !important; /* wrapper provides the surface */
-  font-size: 0.98rem;
+  font-size: 1.1rem;
   line-height: 1.7;
 }
 
