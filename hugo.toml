@@ -60,7 +60,7 @@ summaryLength = 30
   [params.profileMode]
     enabled = true
     title = "Brock B"
-    subtitle = "A tech enthusiast learning through writing with a primary focus on Data, Cloud, and DevOps"
+    subtitle = "A tech enthusiast learning through writing with a primary focus on Data, AI, Cloud, and DevOps"
 
     [[params.profileMode.buttons]]
       name = "Posts"
@@ -92,6 +92,11 @@ summaryLength = 30
   name = "Tags"
   url = "/tags/"
   weight = 3
+
+[[menus.main]]
+  name = "Search"
+  url = "/search/"
+  weight = 4
 
 [sitemap]
   changefreq = "weekly"
