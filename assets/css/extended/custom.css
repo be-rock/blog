@@ -123,6 +123,35 @@
   opacity: 0.7;
 }
 
+/* Tags on home-page post entries */
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry-tags li {
+  display: inline-flex;
+}
+
+.entry-tags a {
+  font-size: 0.72rem;
+  color: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.entry-tags a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
 /* ── Pagination ── */
 
 .pagination {

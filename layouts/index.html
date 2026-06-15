@@ -40,6 +40,13 @@
       <span>{{ .Date.Format ($.Site.Params.dateFormat | default "2006-01-02") }}</span>
       {{- if $.Site.Params.ShowReadingTime }}&nbsp;·&nbsp;{{ .ReadingTime }} min{{ end }}
     </footer>
+    {{- with .Params.tags }}
+    <ul class="entry-tags">
+      {{- range . }}
+      <li><a href="{{ (printf "tags/%s/" (. | urlize)) | relLangURL }}">{{ . }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
   </article>
   {{- end }}
   {{- if gt $paginator.TotalPages 1 }}
