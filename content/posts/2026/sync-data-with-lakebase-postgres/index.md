@@ -1,7 +1,7 @@
 ---
 title: "Sync Data With Lakebase Postgres"
 date: 2026-06-03T11:12:06-05:00
-draft: true
+draft: false
 tags:
   - Databricks
   - Lakebase
