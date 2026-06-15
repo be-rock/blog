@@ -48,6 +48,9 @@ summaryLength = 30
   mainSections = ["posts"]
   author = "Brock B"
 
+  [params.label]
+    text = "Brock's Blog"
+
   [params.assets]
     favicon = "/blog/favicon.svg"
     favicon16x16 = "/blog/favicon-16x16.png"

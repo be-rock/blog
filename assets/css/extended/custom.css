@@ -482,6 +482,19 @@ code, pre, kbd, tt, .chroma {
   border-color: var(--accent);
 }
 
+/* ── Header brand: "Brock's Blog" + accent period ── */
+
+.logo > a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo > a::after {
+  content: ".";
+  color: var(--accent);
+}
+
 /* ── Direction 4 · Micro-interactions ── */
 
 html {
