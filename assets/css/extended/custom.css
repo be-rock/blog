@@ -502,10 +502,10 @@ code, pre, kbd, tt, .chroma {
   align-items: center;
   gap: 8px;
   padding: 5px 9px 5px 11px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(128, 128, 128, 0.18);
   border-radius: 999px;
   color: var(--secondary);
-  background: var(--code-bg);
+  background: transparent;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 
