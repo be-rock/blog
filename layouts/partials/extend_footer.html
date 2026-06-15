@@ -1,0 +1,41 @@
+{{- /* Global keyboard shortcut: open search with "/" or Cmd/Ctrl+K from any page. */ -}}
+{{- with site.GetPage "/search" }}
+<script>
+(function () {
+    var searchURL = {{ .RelPermalink }};
+
+    function isEditable(el) {
+        if (!el) return false;
+        var tag = el.tagName;
+        return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable;
+    }
+
+    function onSearchPage() {
+        return window.location.pathname.replace(/\/+$/, "") === searchURL.replace(/\/+$/, "");
+    }
+
+    function openSearch() {
+        if (onSearchPage()) {
+            var input = document.getElementById("searchInput");
+            if (input) input.focus();
+        } else {
+            window.location.href = searchURL;
+        }
+    }
+
+    document.addEventListener("keydown", function (e) {
+        // Cmd+K (mac) / Ctrl+K (others)
+        if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+            e.preventDefault();
+            openSearch();
+            return;
+        }
+        // "/" — but not while typing in a field, and not with modifiers
+        if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey && !isEditable(e.target)) {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+})();
+</script>
+{{- end }}
