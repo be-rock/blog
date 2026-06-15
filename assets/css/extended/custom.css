@@ -162,7 +162,7 @@
 .footer::before {
   content: "";
   display: block;
-  width: 60px;
+  width: 120px;
   height: 3px;
   margin: 0 auto 1.5rem;
   border-radius: 2px;
