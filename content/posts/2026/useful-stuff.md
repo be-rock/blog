@@ -30,3 +30,15 @@ source.close()
 
 # Now use `dest` — it's a full in-memory copy
 ```
+
+`#sqlite`
+
+### 2026-07
+
+Quickly start a Python REPL in `ipython` with vim keybinds
+
+```shell
+uv venv && source .venv/bin/activate && uv pip install ipython && ipython --TerminalInteractiveShell.editing_mode=vi --colors="Linux"
+```
+
+`#python`
