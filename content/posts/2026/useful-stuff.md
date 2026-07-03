@@ -43,3 +43,26 @@ uv venv && source .venv/bin/activate && uv pip install ipython && \
 ```
 
 `#python`
+
+Start Postgres in a container using `container` CLI:
+
+```shell
+ container run --name postgres \
+  -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password \
+  -e PGDATA=/var/lib/postgresql/data/pgdata \
+  -p 5432:5432 \
+  -v postgres-volume:/var/lib/postgresql/data \
+  -d postgres:17.10
+```
+
+Start the `psql` shell:
+```shell
+container exec -it postgres psql -U postgres
+```
+
+Start the pgcli shell which has some nice auto-complete features, supports vim mode, as well as all of the `\` commands built into `psql` :
+```shell
+PGPASSWORD='password' pgcli -h 127.0.0.1 -U postgres
+```
+
+`#postgres`
