@@ -1,8 +1,10 @@
-{{- /* Global keyboard shortcut: open search with "/" or Cmd/Ctrl+K from any page. */ -}}
+{{- /* Global keyboard shortcut: open search with "/" or Cmd/Ctrl+K from any page.
+       While on the search page, Escape or Cmd/Ctrl+K exits back to the home page. */ -}}
 {{- with site.GetPage "/search" }}
 <script>
 (function () {
     var searchURL = {{ .RelPermalink }};
+    var homeURL = {{ site.Home.RelPermalink }};
 
     function isEditable(el) {
         if (!el) return false;
@@ -23,6 +25,10 @@
         }
     }
 
+    function exitSearch() {
+        window.location.href = homeURL;
+    }
+
     // Show the right hint in the nav search pill (⌘K on mac, Ctrl K elsewhere)
     if (!/Mac|iPhone|iPad/.test(navigator.platform)) {
         document.querySelectorAll(".search-pill kbd").forEach(function (k) {
@@ -31,10 +37,20 @@
     }
 
     document.addEventListener("keydown", function (e) {
-        // Cmd+K (mac) / Ctrl+K (others)
+        // Cmd+K (mac) / Ctrl+K (others) — toggles: opens search, or exits to home when already searching
         if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
             e.preventDefault();
-            openSearch();
+            if (onSearchPage()) {
+                exitSearch();
+            } else {
+                openSearch();
+            }
+            return;
+        }
+        // Escape — exit search back to home
+        if (e.key === "Escape" && onSearchPage()) {
+            e.preventDefault();
+            exitSearch();
             return;
         }
         // "/" — but not while typing in a field, and not with modifiers
