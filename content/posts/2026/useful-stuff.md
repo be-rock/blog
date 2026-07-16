@@ -62,7 +62,27 @@ container exec -it postgres psql -U postgres
 
 Start the pgcli shell which has some nice auto-complete features, supports vim mode, as well as all of the `\` commands built into `psql` :
 ```shell
-PGPASSWORD='password' pgcli -h 127.0.0.1 -U postgres
+PGPASSWORD='password' pgcli -h 127.0.0.1 -U postgres --prompt "postgres> "
 ```
 
 `#postgres`
+
+Nice little `Makefile` helper for sharing a common logging format among numerous targets
+
+```Makefile
+# Define color variables
+GREEN  := \033[32m
+CYAN   := \033[36m
+YELLOW := \033[33m
+RESET  := \033[0m
+
+# log <level> <message>
+log = printf '$(GREEN)%s$(RESET) | $(YELLOW)%s$(RESET) | $(CYAN)%s$(RESET)\n' \
+    "$$(date +%Y-%m-%dT%H:%M:%S%z)" "$(strip $(1))" "$(strip $(2))"
+
+.PHONY: test
+test: ## test the logger
+    @$(call log, INFO, hello world logger)
+```
+
+`#Makefile`
