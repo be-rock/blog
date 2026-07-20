@@ -603,3 +603,141 @@ input:focus-visible,
 .post-content a:hover {
   background-size: 100% 2px, 100% 1px;
 }
+
+/* ── ⌘K command-palette search overlay ── */
+
+.cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+}
+
+.cmdk.cmdk-open {
+  display: block;
+}
+
+body.cmdk-lock {
+  overflow: hidden;
+}
+
+.cmdk-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.cmdk-panel {
+  position: relative;
+  width: min(90vw, 600px);
+  margin: 12vh auto 0;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: cmdk-in 0.14s ease-out;
+}
+
+@keyframes cmdk-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cmdk-inputwrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmdk-icon {
+  flex-shrink: 0;
+  color: var(--secondary);
+}
+
+.cmdk-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--primary);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.cmdk-input::placeholder {
+  color: var(--secondary);
+}
+
+.cmdk-esc {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--secondary);
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 3px 6px;
+}
+
+.cmdk-results {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  max-height: min(50vh, 380px);
+  overflow-y: auto;
+}
+
+.cmdk-result a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: none;
+  background: none;
+}
+
+.cmdk-result.active a {
+  background: var(--accent-dim);
+}
+
+.cmdk-result-title {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cmdk-result.active .cmdk-result-title {
+  color: var(--accent);
+}
+
+.cmdk-result-summary {
+  color: var(--secondary);
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmdk-empty {
+  margin: 0;
+  padding: 16px;
+  text-align: center;
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .cmdk-panel {
+    margin-top: 8vh;
+    width: 94vw;
+  }
+  .cmdk-esc {
+    display: none;
+  }
+}
