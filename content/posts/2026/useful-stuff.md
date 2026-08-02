@@ -86,3 +86,16 @@ test: ## test the logger
 ```
 
 `#Makefile`
+
+### 2026-08
+
+Use `pgcli` to connect to Lakebase Postgres using a `Makefile` target run via: `make lakebase/pgcli`
+
+```shell
+.PHONY: lakebase/pgcli
+lakebase/pgcli: ## start the lakebase pgcli shell 🐘
+	PGPASSWORD=$$(databricks database generate-database-credential --request-id "$$(uuidgen)" --json '{"instance_names": ["yourinstanceHere"]}' | jq -r .token) \
+		pgcli "postgresql://yourEmail%40gmail.com@name.database.us-east-2.cloud.databricks.com/databricks_postgres?sslmode=require"
+```
+
+`#postgres`
