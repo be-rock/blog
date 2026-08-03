@@ -98,4 +98,11 @@ lakebase/pgcli: ## start the lakebase pgcli shell 🐘
 		pgcli "postgresql://yourEmail%40gmail.com@name.database.us-east-2.cloud.databricks.com/databricks_postgres?sslmode=require"
 ```
 
+Run a script in `pgcli`:
+
+```
+\i /path/to/script.sql
+```
+
 `#postgres`
+
