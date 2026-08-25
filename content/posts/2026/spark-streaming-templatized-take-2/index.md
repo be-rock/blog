@@ -1,7 +1,7 @@
 ---
 title: "Spark Streaming - Templatized (Take 2)"
 date: 2026-08-24T22:37:08-05:00
-draft: true
+draft: false
 tags:
   - spark
   - streaming
